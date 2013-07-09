@@ -2,7 +2,7 @@ from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
 
 class DmozSpider(BaseSpider):
-    name = "douban"
+    name = "douban" 
     allowed_domains = ["douban.com"]
     start_urls = [
         "http://www.douban.com/group/beijingzufang/discussion"
