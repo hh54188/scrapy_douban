@@ -7,9 +7,10 @@ page = urllib2.urlopen("http://www.douban.com/group/beijingzufang/discussion")
 soup = BeautifulSoup(page)
 collection = soup.select("table.olt td.title a")
 
+print "the size of the collection is:"
+print sys.getsizeof(collection)
+print "in bytes"
+
 for link in collection:
 	title = link["title"]
 	href = link["href"]
-
-	print title
-	print href
