@@ -1,4 +1,4 @@
-#!c:\Users\Administrator\Desktop\scrapy_douban\flask\venv\Scripts\python.exe
+#!c:\Users\QIYI\Desktop\scrapy_douban\flask\venv\Scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'pip==1.3.1','console_scripts','pip-2.7'
 __requires__ = 'pip==1.3.1'
 import sys
