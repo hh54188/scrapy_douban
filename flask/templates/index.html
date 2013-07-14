@@ -1,9 +1,28 @@
 <!doctype html>
-<title>Hello from Flask</title>
+<html>
+<head>
+	<title>测试</title>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+	<script type="text/javascript">
+		$(function () {
+			var input = $('input')
+			input.click(function () {
+				$.ajax({
+					type: "get",
+					url: '/login',
+					data: {
+						name: 'lee'
+					},
+					success: function (data) {
+						console.log(typeof data);
+						console.log(data);
+					}
+				})
+			})
+		})
+	</script>
+</head>
 <body>
-{% if name %}
-<h1>Hello {{ name }}!</h1>
-{% else %}
-<h1>Hello World!</h1>
-{% endif %}
+	<input value="测试" type="button">
 </body>
+</html>
