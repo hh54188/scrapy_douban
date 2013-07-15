@@ -1,17 +1,18 @@
-import urllib2
-RESULT = range(11)
+from flask import Flask, url_for
+from flask import request
+from flask import render_template
+import json
+import time
+from info import *
 
-print "01: RESULT len:" + str(len(RESULT))
+app = Flask(__name__)
 
-def Test():
-	global RESULT
-	total = RESULT[:]
-	result = []
-	for i in total:
-		if i % 2 == 0:
-			result.append(i)
-			total.remove(i)
-	print "02: total len:" + str(len(total))
-	print "03: RESULT len:" + str(len(RESULT))	
+print "Hello World!"
 
-Test()
+app.config.update(
+    DEBUG = True,
+    SERVER_NAME = "127.0.0.1:8000"
+)
+
+if __name__ == '__main__':
+    app.run(use_reloader=False)
