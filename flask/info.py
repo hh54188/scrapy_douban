@@ -3,7 +3,7 @@ import time
 import sys
 from bs4 import BeautifulSoup
 
-class Info(object):
+class InfoClas(object):
     FETCH_URLS = [
         # "http://www.douban.com/group/beijingzufang/discussion",
         # "http://www.douban.com/group/fangzi/discussion",
@@ -13,7 +13,7 @@ class Info(object):
 
     RESULT = []
     PAUSE_SECOND = 1
-    PAGE_NUM = 10
+    PAGE_NUM = 1
 
     def __init__(self):
         pass
@@ -29,6 +29,7 @@ class Info(object):
                 "link": ""
             }
             item["title"] = link["title"]
+            print "[under fetch]------>:" + link["href"]
             item["link"] = link["href"]
             self.RESULT.append(item)
             
@@ -37,7 +38,8 @@ class Info(object):
         for url in self.FETCH_URLS:
             for  i in range(self.PAGE_NUM):
                 link = url + "?start=" + str(25 * i)
-                time.sleep(self.PAUSE_SECOND)
+                if (self.PAUSE_SECOND != 0):
+                    time.sleep(self.PAUSE_SECOND)
                 self.__fetchSingle(link)
         return self.RESULT
         # print sys.getsizeof(self.RESULT)

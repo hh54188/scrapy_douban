@@ -3,11 +3,10 @@
 <head>
 	<title>测试</title>
 	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 	<script type="text/javascript">
 		$(function () {
-			var input = $('input');
-			var keywords = ["五道口"];
-			input.click(function () {
+			function search() {
 				$.ajax({
 					type: "get",
 					url: '/fetch',
@@ -16,15 +15,41 @@
 						name: 'lee'
 					},
 					success: function (data) {
-						console.log(typeof data);
-						console.log(data);
+						var result = $.parseJSON(data)["data"];
+						for (var i = 0; i < result.length; i++) {
+							var item = result[i];
+							var $li = $('<li><a target="_blank" href="' + item.link + '">' + item.title + '</a></li>');
+							$('ul').append($li);
+						}
 					}
 				})
+			}
+			function chart() {
+				$.ajax({
+					type: "get",
+					url: '/chart',
+					success: function (data) {
+						var result = $.parseJSON(data);
+						console.log(result)
+					}
+				})
+			}
+
+			var input = $('input');
+			var keywords = ["立水桥"];
+
+			input.click(function () {
+				chart();
 			})
 		})
 	</script>
 </head>
 <body>
-	<input value="测试" type="button">
+	<div class="container">
+		<div class="row">
+			<input class="btn" value="测试" type="button">
+			<ul></ul>
+		</div>
+	</div>
 </body>
 </html>

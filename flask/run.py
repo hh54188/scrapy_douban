@@ -4,6 +4,7 @@ from flask import render_template
 import json
 import time
 from info import *
+from chart import *
 
 app = Flask(__name__)
 
@@ -13,10 +14,14 @@ EXPIRE_TIME = 10 * 60
 RESULT = [];
 
 print "[fetch data]------>begin"
-instance = Info()
+instance = InfoClas()
 RESULT = instance.fetch()
 print "[fetch data]------>data length:" + str(len(RESULT))
 print "[fetch data]------>end"
+
+# statistics
+def chart():
+    pass
 
 def isExpire():
     global LAST_FETCH_TIMESTAMP
@@ -57,14 +62,26 @@ def refresh():
     reFetch()
 
 
+@app.route('/chart')
+def chart():
+    global RESULT
+    instance = ChartClas()
+    result = instance.start(RESULT)
+    # print "------------------->!!"
+    return json.dumps(result)
+    
+
+
 @app.route('/fetch')
 def fetch():
     global RESULT
+    global LAST_FETCH_TIMESTAMP
     keywords = request.args["param"].split("&")
     result = search(keywords);
     # if the data haven't update more than ten minutes
-    if isExpire():
-        reFetch()
+    # if isExpire():
+    #     reFetch()
+    #     LAST_FETCH_TIMESTAMP = time.time()
     return json.dumps({
         'status': 'ok',
         'data': result

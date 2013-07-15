@@ -1,18 +1,13 @@
-from flask import Flask, url_for
-from flask import request
-from flask import render_template
-import json
-import time
-from info import *
+# -*- coding: utf-8 -*- 
 
-app = Flask(__name__)
+KEY_WORDS = {
+    'location': ['西苑', '西二旗', '知春路', '牡丹园', '人民大学', '回龙观', '霍营', '望京', '立水桥', '西直门', '三元桥', '劲松', '惠新', '四惠', '鼓楼', '天通'],
+    'line': ['一号', '1号', '八通', '四号', '4号', '大兴', '六号', '6号', '九号', '9号', '十三号', '13号', '房山', '亦庄', '二号', '2号', '五号', '5号', '八号', '8号', '十号', '10号', '十五号', '15号', '昌平']
+}
 
-print "Hello World!"
+def test():
+	global KEY_WORDS
+	for word in KEY_WORDS["location"]:
+		print word.decode("utf8")
 
-app.config.update(
-    DEBUG = True,
-    SERVER_NAME = "127.0.0.1:8000"
-)
-
-if __name__ == '__main__':
-    app.run(use_reloader=False)
+test()
