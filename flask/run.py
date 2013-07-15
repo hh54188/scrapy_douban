@@ -12,30 +12,43 @@ LAST_FETCH_TIMESTAMP = time.time()
 EXPIRE_TIME = 10 * 60
 RESULT = [];
 
+print "[fetch data]------>begin"
 instance = Info()
 RESULT = instance.fetch()
-
+print "[fetch data]------>data length:" + str(len(RESULT))
+print "[fetch data]------>end"
 
 def isExpire():
     global LAST_FETCH_TIMESTAMP
     cur_time = time.time();
     time_span = cur_time - LAST_FETCH_TIMESTAMP;
-    LAST_FETCH_TIMESTAMP = cur_time;
+    print "------>Time span:" + str(time_span)
     if time_span > EXPIRE_TIME:
         return True
     else:
         return False
 
 def search(keywords):
+    global RESULT
     result = [];
-    for item in RESULT:
+    total = RESULT[:]
+    print "[search data]------>RESULT len:" + str(len(RESULT))
+    print "[search data]------>total len:" + str(len(total))
+    print "[search data]------>keywords len:" + str(len(keywords))
+    for item in total:
         title = item["title"]
         for word in keywords:
             if word in title:
                 result.append(item)
+                total.remove(item)
                 break
-
+    print "[search data]------>result len:" + str(len(result))
     return result
+
+def reFetch():
+    global RESULT
+    RESULT = instance.fetch()
+
 
 @app.route('/')
 def welcome():
@@ -43,11 +56,19 @@ def welcome():
     return render_template('index.html')
 
 
+@app.route('/refresh')
+def refresh():
+    reFetch()
+
+
 @app.route('/fetch')
 def fetch():
     global RESULT
     keywords = request.args["param"].split("&")
     result = search(keywords);
+    # if the data haven't update more than ten minutes
+    if isExpire():
+        reFetch()
     return json.dumps({
         'status': 'ok',
         'data': result

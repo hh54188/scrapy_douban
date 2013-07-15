@@ -12,7 +12,7 @@ class Info(object):
     ]
 
     RESULT = []
-    PAUSE_SECOND = 1
+    PAUSE_SECOND = 2
     PAGE_NUM = 1
 
     def __init__(self):
@@ -39,7 +39,6 @@ class Info(object):
             }
             item["title"] = link["title"]
             item["link"] = link["href"]
-            print item["link"]
             self.RESULT.append(item)
             
 
