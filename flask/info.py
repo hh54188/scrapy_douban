@@ -5,15 +5,15 @@ from bs4 import BeautifulSoup
 
 class Info(object):
     FETCH_URLS = [
-        "http://www.douban.com/group/beijingzufang/discussion",
-        "http://www.douban.com/group/fangzi/discussion",
-        "http://www.douban.com/group/262626/discussion",
+        # "http://www.douban.com/group/beijingzufang/discussion",
+        # "http://www.douban.com/group/fangzi/discussion",
+        # "http://www.douban.com/group/262626/discussion",
         "http://www.douban.com/group/276176/discussion"
     ]
 
     RESULT = []
     PAUSE_SECOND = 1
-    PAGE_NUM = 10
+    PAGE_NUM = 1
 
     def __init__(self):
         pass
@@ -28,10 +28,7 @@ class Info(object):
         # }
         # request = urllib2.Request(url, None, headers)
         # page = urllib2.urlopen(request)
-        print "-------------->begin fetch:"
-        print url
         page = urllib2.urlopen(url)
-        print "-------------->fetch success!"
         soup = BeautifulSoup(page)
         collection = soup.select("table.olt td.title a")
 
@@ -42,7 +39,6 @@ class Info(object):
             }
             item["title"] = link["title"]
             item["link"] = link["href"]
-            print "-------------->what I fetched:"
             print item["link"]
             self.RESULT.append(item)
             
@@ -53,10 +49,5 @@ class Info(object):
                 link = url + "?start=" + str(25 * i)
                 time.sleep(self.PAUSE_SECOND)
                 self.__fetchSingle(link)
-                print len(self.RESULT)
-        print sys.getsizeof(self.RESULT)
-
-
-
-instance = Info();
-instance.fetch();
+        return self.RESULT
+        # print sys.getsizeof(self.RESULT)

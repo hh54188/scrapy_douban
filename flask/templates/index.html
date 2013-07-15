@@ -5,12 +5,14 @@
 	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
 	<script type="text/javascript">
 		$(function () {
-			var input = $('input')
+			var input = $('input');
+			var keywords = ["五道口"];
 			input.click(function () {
 				$.ajax({
 					type: "get",
-					url: '/detch',
+					url: '/fetch',
 					data: {
+						param: keywords.join("&"),
 						name: 'lee'
 					},
 					success: function (data) {

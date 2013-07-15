@@ -3,12 +3,18 @@ from flask import request
 from flask import render_template
 import json
 import time
+from info import *
 
 app = Flask(__name__)
 
 
 LAST_FETCH_TIMESTAMP = time.time()
 EXPIRE_TIME = 10 * 60
+RESULT = [];
+
+instance = Info()
+RESULT = instance.fetch()
+
 
 def isExpire():
     global LAST_FETCH_TIMESTAMP
@@ -20,17 +26,31 @@ def isExpire():
     else:
         return False
 
+def search(keywords):
+    result = [];
+    for item in RESULT:
+        title = item["title"]
+        for word in keywords:
+            if word in title:
+                result.append(item)
+                break
+
+    return result
+
 @app.route('/')
-def comein():
+def welcome():
     isExpire()
     return render_template('index.html')
 
 
 @app.route('/fetch')
-def login():
-    print isExpire()
+def fetch():
+    global RESULT
+    keywords = request.args["param"].split("&")
+    result = search(keywords);
     return json.dumps({
-        'status': 'ok'
+        'status': 'ok',
+        'data': result
     })
 
 
