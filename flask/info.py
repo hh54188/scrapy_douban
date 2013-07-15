@@ -12,22 +12,13 @@ class Info(object):
     ]
 
     RESULT = []
-    PAUSE_SECOND = 2
-    PAGE_NUM = 1
+    PAUSE_SECOND = 1
+    PAGE_NUM = 10
 
     def __init__(self):
         pass
 
     def __fetchSingle(self, url):
-        # headers = { 
-        #     'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36',
-        #     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        #     'Cache-Control': 'no-cache',
-        #     'Connection': 'keep-alive',
-        #     'Host': 'www.douban.com'
-        # }
-        # request = urllib2.Request(url, None, headers)
-        # page = urllib2.urlopen(request)
         page = urllib2.urlopen(url)
         soup = BeautifulSoup(page)
         collection = soup.select("table.olt td.title a")

@@ -32,9 +32,6 @@ def search(keywords):
     global RESULT
     result = [];
     total = RESULT[:]
-    print "[search data]------>RESULT len:" + str(len(RESULT))
-    print "[search data]------>total len:" + str(len(total))
-    print "[search data]------>keywords len:" + str(len(keywords))
     for item in total:
         title = item["title"]
         for word in keywords:
@@ -42,7 +39,6 @@ def search(keywords):
                 result.append(item)
                 total.remove(item)
                 break
-    print "[search data]------>result len:" + str(len(result))
     return result
 
 def reFetch():
