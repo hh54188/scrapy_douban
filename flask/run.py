@@ -25,7 +25,8 @@ UNDER_FETCH = False
 
 def update():
     global RESULT, INFO_INSTANCE, LAST_FETCH_TIMESTAMP, RESULT_BACKUP, UNDER_FETCH
-
+    # resest
+    RESULT = []
     print "[fetch data]------>begin"
     RESULT = INFO_INSTANCE.fetch()
     print "[fetch data]------>data length:" + str(len(RESULT))
@@ -69,10 +70,10 @@ def search(keywords):
 def welcome():
     global RESULT_BACKUP, UNDER_FETCH
     # if the data haven't update more than ten minutes
-    if isExpire():
-        RESULT_BACKUP = RESULT
-        UNDER_FETCH = True
-        update()
+    # if isExpire():
+    #     RESULT_BACKUP = RESULT
+    #     UNDER_FETCH = True
+    #     update()
     return render_template('index.html')
     
 

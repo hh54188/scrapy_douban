@@ -1,56 +1,163 @@
 <!doctype html>
 <html>
 <head>
-	<title>测试</title>
-	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
-	<script type="text/javascript">
-		$(function () {
-			function search() {
-				$.ajax({
-					type: "get",
-					url: '/fetch',
-					data: {
-						param: keywords.join("&"),
-						name: 'lee'
-					},
-					success: function (data) {
-						var result = $.parseJSON(data)["data"];
-						for (var i = 0; i < result.length; i++) {
-							var item = result[i];
-							var $li = $('<li><a target="_blank" href="' + item.link + '">' + item.title + '</a></li>');
-							$('ul').append($li);
-						}
-					}
-				})
-			}
-			function chart() {
-				$.ajax({
-					type: "get",
-					url: '/analysis',
-					success: function (data) {
-						var result = $.parseJSON(data);
-						console.log(result)
-					}
-				})
-			}
+    <title>测试</title>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <script type="text/javascript">
+        $(function () {
+            function search() {
+                $.ajax({
+                    type: "get",
+                    url: '/fetch',
+                    data: {
+                        param: keywords.join("&"),
+                        name: 'lee'
+                    },
+                    success: function (data) {
+                        var result = $.parseJSON(data)["data"];
+                        for (var i = 0; i < result.length; i++) {
+                            var item = result[i];
+                            var $li = $('<li><a target="_blank" href="' + item.link + '">' + item.title + '</a></li>');
+                            $('ul').append($li);
+                        }
+                    }
+                })
+            }
+            function chart() {
+                $.ajax({
+                    type: "get",
+                    url: '/analysis',
+                    success: function (data) {
+                        var result = $.parseJSON(data);
+                        console.log(result)
+                    }
+                })
+            }
 
-			var input = $('input');
-			var keywords = ["五道口"];
+            var input = $('input');
+            var keywords = ["五道口"];
 
-			input.click(function () {
-				// search();
-				chart()
-			})
-		})
-	</script>
+            input.click(function () {
+                // search();
+                chart()
+            })
+        })
+    </script>
+    <style type="text/css">
+        body {
+            font-family: '微软雅黑';
+        }
+        .side_bar {
+            margin: 110px 0 0;          
+        }
+    </style>    
 </head>
-<body>
-	<div class="container">
-		<div class="row">
-			<input class="btn" value="测试" type="button">
-			<ul></ul>
-		</div>
-	</div>
+<body>    
+    <div class="container">
+        <div class="row">
+            <div class="span9">
+                <div class="page-header">
+                    <h1>豆瓣租房小工具</h1>
+                </div>
+                <ul>
+                    <li><a data-toggle="modal" href="#myModal">它解决了什么问题？</a></li>
+                    <li><a href="#">如何使用？</a></li>
+                    <li><a href="">测试</a></li>
+                </ul>               
+                <hr>
+                <div class="select_box">
+                    <ul class="nav nav-tabs">
+                        <li class="dropdown active">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">地铁<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a data-toggle="tab" href="#select_box-line13">13号线</a></li>
+                                <li><a data-toggle="tab" href="#select_box-line10">10号线</a></li>
+                                <li><a data-toggle="tab" href="#select_box-line4">4号线</a></li>
+                                <li><a data-toggle="tab" href="#select_box-line5">5号线</a></li>
+                                <li><a data-toggle="tab" href="#select_box-line8">8号线</a></li>      
+                                <li><a data-toggle="tab" href="#select_box-line6">6号线</a></li>
+                                <li><a data-toggle="tab" href="#select_box-line9">9号线</a></li>      
+                                <li><a data-toggle="tab" href="#select_box-line2">2号线</a></li>    
+                                <li><a data-toggle="tab" href="#select_box-line1">1号线</a></li>      
+                                <li><a data-toggle="tab" href="#select_box-lineChangpin">昌平线</a></li>      
+                                <li><a data-toggle="tab" href="#select_box-lineDaxing">大兴线</a></li>      
+                                <li><a data-toggle="tab" href="#select_box-lineBatong">八通线</a></li>      
+                                <li><a data-toggle="tab" href="#select_box-lineYizhuang">亦庄线</a></li>      
+                                <li><a data-toggle="tab" href="#select_box-lineFangshan">房山线</a></li>
+                            </ul>
+                        </li>
+                        <li class=""><a data-toggle="tab" href="#profile">市辖区</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="select_box-line13" class="tab-pane active">
+                            <span class="label label-warning">13号线</span>
+                            <button class="btn btn-small" data-toggle="button">西直门</button>
+                            <button class="btn btn-small" data-toggle="button">大钟寺</button>
+                            <button class="btn btn-small" data-toggle="button">知春路</button>
+                            <button class="btn btn-small" data-toggle="button">五道口</button>
+                            <button class="btn btn-small" data-toggle="button">上地</button>     
+                        </div>
+                        <div id="select_box-line10" class="tab-pane">
+                            <span class="label label-warning">10号线</span>
+                        </div>
+                        <div id="select_box-line4" class="tab-pane">
+                            <span class="label label-warning">4号线</span>
+                        </div>
+                        <div id="select_box-line5" class="tab-pane">
+                            <span class="label label-warning">5号线</span>
+                        </div>
+                        <div id="select_box-line8" class="tab-pane">
+                            <span class="label label-warning">8号线</span>
+                        </div>
+                        <div id="select_box-line6" class="tab-pane">
+                            <span class="label label-warning">6号线</span>
+                        </div>
+                        <div id="select_box-line9" class="tab-pane">
+                            <span class="label label-warning">9号线</span>
+                        </div>
+                        <div id="select_box-line2" class="tab-pane">
+                            <span class="label label-warning">2号线</span>
+                        </div>
+                        <div id="select_box-line1" class="tab-pane">
+                            <span class="label label-warning">1号线</span>
+                        </div>
+                        <div id="select_box-lineChangpin" class="tab-pane">
+                             <span class="label label-warning">昌平线</span>
+                        </div>
+                        <div id="select_box-lineDaxing" class="tab-pane">
+                             <span class="label label-warning">大兴线</span>
+                        </div>
+                        <div id="select_box-lineBatong" class="tab-pane">
+                            <span class="label label-warning">八通线</span>
+                        </div>
+                        <div id="select_box-lineYizhuang" class="tab-pane">
+                             <span class="label label-warning">亦庄线</span>
+                        </div>                        
+                        <div id="select_box-lineFangshan" class="tab-pane">
+                             <span class="label label-warning">房山线</span>
+                        </div>                     
+                    </div>
+                </div>
+            </div>
+            <div class="span3 side_bar">
+            </div>
+        </div>
+    </div>
+    <!-- Model begin -->
+    <!-- Modal -->
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Modal header</h3>
+        </div>
+        <div class="modal-body">
+        <p>One fine body…</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">确定</button>
+        </div>
+    </div>    
 </body>
 </html>
