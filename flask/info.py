@@ -5,18 +5,25 @@ from bs4 import BeautifulSoup
 
 class InfoClas(object):
     FETCH_URLS = [
-        "http://www.douban.com/group/beijingzufang/discussion",
-        "http://www.douban.com/group/fangzi/discussion",
-        "http://www.douban.com/group/262626/discussion",
+        # "http://www.douban.com/group/beijingzufang/discussion",
+        # "http://www.douban.com/group/fangzi/discussion",
+        # "http://www.douban.com/group/262626/discussion",
         "http://www.douban.com/group/276176/discussion"
     ]
 
     RESULT = []
     PAUSE_SECOND = 1
-    PAGE_NUM = 10
+    PAGE_NUM = 1
+    
 
     def __init__(self):
         pass
+
+
+    def __showProgress(self, data):
+        total = len(self.FETCH_URLS) * self.PAGE_NUM * 25
+        print "[fecth progress]------>" + str((len(data) / float(total)) * 100) + '%'
+
 
     def __fetchSingle(self, url):
         page = urllib2.urlopen(url)
@@ -29,9 +36,9 @@ class InfoClas(object):
                 "link": ""
             }
             item["title"] = link["title"]
-            print "[under fetch]------>:" + link["href"]
             item["link"] = link["href"]
             self.RESULT.append(item)
+
             
 
     def fetch(self):
@@ -41,5 +48,7 @@ class InfoClas(object):
                 if (self.PAUSE_SECOND != 0):
                     time.sleep(self.PAUSE_SECOND)
                 self.__fetchSingle(link)
+                self.__showProgress(self.RESULT);
+                # print sys.getsizeof(self.RESULT)
         return self.RESULT
-        # print sys.getsizeof(self.RESULT)
+        

@@ -9,20 +9,33 @@ from chart import *
 
 app = Flask(__name__)
 
-
+# the last fetch time
 LAST_FETCH_TIMESTAMP = time.time()
+# expire time
 EXPIRE_TIME = 10 * 60
-RESULT = [];
+# fetch result
+RESULT = []
+# fetch result backup
+RESULT_BACKUP = []
+# the info crawl class
+INFO_INSTANCE = InfoClas()
+# is under fetch again
+UNDER_FETCH = False
 
-print "[fetch data]------>begin"
-instance = InfoClas()
-RESULT = instance.fetch()
-print "[fetch data]------>data length:" + str(len(RESULT))
-print "[fetch data]------>end"
 
-# statistics
-def chart():
-    pass
+def update():
+    global RESULT, INFO_INSTANCE, LAST_FETCH_TIMESTAMP, RESULT_BACKUP, UNDER_FETCH
+
+    print "[fetch data]------>begin"
+    RESULT = INFO_INSTANCE.fetch()
+    print "[fetch data]------>data length:" + str(len(RESULT))
+    print "[fetch data]------>end"
+    LAST_FETCH_TIMESTAMP = time.time()
+    UNDER_FETCH = False
+
+update()
+
+
 
 def isExpire():
     global LAST_FETCH_TIMESTAMP
@@ -34,10 +47,14 @@ def isExpire():
     else:
         return False
 
+
+
 def search(keywords):
-    global RESULT
+    global RESULT, RESULT_BACKUP, UNDER_FETCH
     result = [];
-    total = RESULT[:]
+    total = RESULT[:]    
+    if UNDER_FETCH:
+        total = UNDER_FETCH[:]
     for item in total:
         title = item["title"]
         for word in keywords:
@@ -47,23 +64,17 @@ def search(keywords):
                 break
     return result
 
-def reFetch():
-    global RESULT
-    RESULT = instance.fetch()
-
 
 @app.route('/')
 def welcome():
+    global RESULT_BACKUP, UNDER_FETCH
     # if the data haven't update more than ten minutes
-    # if isExpire():
-    #     reFetch()
-    #     LAST_FETCH_TIMESTAMP = time.time()
+    if isExpire():
+        RESULT_BACKUP = RESULT
+        UNDER_FETCH = True
+        update()
     return render_template('index.html')
-
-
-@app.route('/refresh')
-def refresh():
-    reFetch()
+    
 
 
 @app.route('/analysis')
@@ -77,8 +88,7 @@ def analysis():
 
 @app.route('/fetch')
 def fetch():
-    global RESULT
-    global LAST_FETCH_TIMESTAMP
+    global RESULT, LAST_FETCH_TIMESTAMP, RESULT_BACKUP
     keywords = request.args["param"].split("&")
     result = search(keywords);
     return json.dumps({
