@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*- 
 import operator
 class ChartClas(object):
@@ -11,30 +10,36 @@ class ChartClas(object):
     def __init__(self):
         pass
 
-    def generateObj(self, words):
+    def generateDict(self):
         result = {}
-        for word in words:
-            word = word.decode('utf-8')
-            self.TEMP[word] = 0
+        for key  in self.KEY_WORDS:
+            result[key] = []
+            for word in self.KEY_WORDS[key]:
+                word = word.decode('utf-8')
+                temp = {
+                    'name': word,
+                    'count': 0
+                }
+                result[key].append(temp)
+        return result
 
-    def sortBy(self, data):
-        for word in data:
-            return data[word]
 
-    def start(self, data):
-        self.generateObj(self.KEY_WORDS["location"])
+    def sortBy(self, dictObj):
+        for key in dictObj:
+            item_sorted = sorted(dictObj[key], key=lambda x: x['count'], reverse = True)
+            dictObj[key] = item_sorted
+        return dictObj
+
+
+    def analysis(self, data):
+        dictObj = self.generateDict();
         for item in data:
             title = item["title"]
-            for word in self.TEMP:
-                if word in title:
-                    self.TEMP[word] += 1
-
-        # self.TEMP = sorted(self.TEMP.iteritems(), key = operator.itemgetter(1))
-        print self.TEMP
-        # for key in self.TEMP:
-        #     print key
-        #     print str(self.TEMP[key])
-
-        return self.TEMP
+            for key in dictObj:
+                for item in dictObj[key]:
+                    if item["name"] in title:
+                        item["count"] += 1
+        dictObj_sorted = self.sortBy(dictObj)
+        return dictObj_sorted
 
 

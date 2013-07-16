@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 from flask import Flask, url_for
 from flask import request
 from flask import render_template
@@ -27,7 +28,7 @@ def isExpire():
     global LAST_FETCH_TIMESTAMP
     cur_time = time.time();
     time_span = cur_time - LAST_FETCH_TIMESTAMP;
-    print "------>Time span:" + str(time_span)
+    print "[time span]------>span:" + str(time_span)
     if time_span > EXPIRE_TIME:
         return True
     else:
@@ -53,7 +54,10 @@ def reFetch():
 
 @app.route('/')
 def welcome():
-    isExpire()
+    # if the data haven't update more than ten minutes
+    # if isExpire():
+    #     reFetch()
+    #     LAST_FETCH_TIMESTAMP = time.time()
     return render_template('index.html')
 
 
@@ -62,12 +66,11 @@ def refresh():
     reFetch()
 
 
-@app.route('/chart')
-def chart():
+@app.route('/analysis')
+def analysis():
     global RESULT
     instance = ChartClas()
-    result = instance.start(RESULT)
-    # print "------------------->!!"
+    result = instance.analysis(RESULT)
     return json.dumps(result)
     
 
@@ -78,10 +81,6 @@ def fetch():
     global LAST_FETCH_TIMESTAMP
     keywords = request.args["param"].split("&")
     result = search(keywords);
-    # if the data haven't update more than ten minutes
-    # if isExpire():
-    #     reFetch()
-    #     LAST_FETCH_TIMESTAMP = time.time()
     return json.dumps({
         'status': 'ok',
         'data': result

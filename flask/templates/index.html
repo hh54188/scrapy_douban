@@ -27,7 +27,7 @@
 			function chart() {
 				$.ajax({
 					type: "get",
-					url: '/chart',
+					url: '/analysis',
 					success: function (data) {
 						var result = $.parseJSON(data);
 						console.log(result)
