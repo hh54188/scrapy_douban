@@ -12,7 +12,7 @@ app = Flask(__name__)
 # the last fetch time
 LAST_FETCH_TIMESTAMP = time.time()
 # expire time
-EXPIRE_TIME = 20 * 60
+EXPIRE_TIME = 15 * 60
 # fetch result
 RESULT = []
 # fetch result backup
