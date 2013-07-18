@@ -1,4 +1,4 @@
-#!C:\Users\QIYI\Desktop\scrapy_douban\flask\venv\Scripts\python.exe
+#!C:\Users\Administrator\Desktop\scrapy_douban\flask\venv\Scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'setuptools==0.6c11','console_scripts','easy_install-2.7'
 __requires__ = 'setuptools==0.6c11'
 import sys

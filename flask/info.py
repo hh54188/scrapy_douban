@@ -5,15 +5,15 @@ from bs4 import BeautifulSoup
 
 class InfoClas(object):
     FETCH_URLS = [
-        # "http://www.douban.com/group/beijingzufang/discussion",
-        # "http://www.douban.com/group/fangzi/discussion",
-        # "http://www.douban.com/group/262626/discussion",
+        "http://www.douban.com/group/beijingzufang/discussion",
+        "http://www.douban.com/group/fangzi/discussion",
+        "http://www.douban.com/group/262626/discussion",
         "http://www.douban.com/group/276176/discussion"
     ]
 
     RESULT = []
-    PAUSE_SECOND = 1
-    PAGE_NUM = 1
+    PAUSE_SECOND = 0
+    PAGE_NUM = 10
     
 
     def __init__(self):
@@ -42,6 +42,7 @@ class InfoClas(object):
             
 
     def fetch(self):
+        self.RESULT = [];
         for url in self.FETCH_URLS:
             for  i in range(self.PAGE_NUM):
                 link = url + "?start=" + str(25 * i)
