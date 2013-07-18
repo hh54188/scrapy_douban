@@ -66,14 +66,21 @@ def search(keywords):
     return result
 
 
-@app.route('/')
-def welcome():
+@app.route('/refresh')
+def refresh():
     global RESULT_BACKUP, UNDER_FETCH
     # if the data haven't update more than ten minutes
-    # if isExpire():
-    #     RESULT_BACKUP = RESULT
-    #     UNDER_FETCH = True
-    #     update()
+    if isExpire():
+        RESULT_BACKUP = RESULT
+        UNDER_FETCH = True
+        update()
+    return json.dumps({
+        'status': 'ok'
+    })
+
+
+@app.route('/')
+def welcome():
     return render_template('index.html')
     
 

@@ -59,12 +59,13 @@
         <div class="row">
             <div class="span9">
                 <div class="page-header">
-                    <h1>豆瓣租房小工具</h1>
+                    <!-- <h1>豆瓣租房小工具</h1> -->
                 </div>
                 <ul>
-                    <li><a data-toggle="modal" href="#myModal">它解决了什么问题？</a></li>
-                    <li><a href="#">如何使用？</a></li>
-                    <li><a href="">测试</a></li>
+                    <li><a data-toggle="modal" href="#modal_why">为什么做这个工具</a></li>
+                    <li><a data-toggle="modal" href="#modal_how" href="#">使用指南</a></li>
+                    <li><a data-toggle="modal" href="#modal_advice" href="#">意见反馈</a></li>
+                    <li><a data-toggle="modal" href="#modal_tech" href="#">技术参考</a></li>
                 </ul>               
                 <hr>
                 <div class="select_box">
@@ -339,15 +340,35 @@
                 </div>
             </div>
             <div class="span3 side_bar">
+                <div class="alert in alert-info">
+                    <strong>测试</strong>
+                    <a class="close" data-dismiss="alert" href="#">&times;</a>
+                </div>
+                <div class="alert in alert-info">
+                    <strong>测试</strong>
+                    <a class="close" data-dismiss="alert" href="#">&times;</a>
+                </div>                
+                <div class="alert in alert-info">
+                    <strong>测试</strong>
+                    <a class="close" data-dismiss="alert" href="#">&times;</a>
+                </div>
+                <div class="alert in alert-info">
+                    <strong>测试</strong>
+                    <a class="close" data-dismiss="alert" href="#">&times;</a>
+                </div>
+                <div class="alert in alert-info">
+                    <strong>测试</strong>
+                    <a class="close" data-dismiss="alert" href="#">&times;</a>
+                </div>
             </div>
         </div>
     </div>
     <!-- Model begin -->
-    <!-- Modal -->
-    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- Why -->
+    <div id="modal_why" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Modal header</h3>
+            <h3>this is why</h3>
         </div>
         <div class="modal-body">
         <p>One fine body…</p>
@@ -356,5 +377,48 @@
             <button class="btn" data-dismiss="modal" aria-hidden="true">确定</button>
         </div>
     </div>    
+
+
+    <!-- How -->
+    <div id="modal_how" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3>this is how</h3>
+        </div>
+        <div class="modal-body">
+        <p>One fine body…</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">确定</button>
+        </div>
+    </div>
+
+    <!-- advice -->
+    <div id="modal_advice" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3>this is advice</h3>
+        </div>
+        <div class="modal-body">
+        <p>One fine body…</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">确定</button>
+        </div>
+    </div> 
+
+    <!-- tech -->
+    <div id="modal_tech" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3>this is tech</h3>
+        </div>
+        <div class="modal-body">
+        <p>One fine body…</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">确定</button>
+        </div>
+    </div> 
 </body>
 </html>
