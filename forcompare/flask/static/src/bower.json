@@ -1,0 +1,16 @@
+{
+  "name": "flask",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.9.1",
+    "bootstrap": "~2.3.2"
+  }
+}
