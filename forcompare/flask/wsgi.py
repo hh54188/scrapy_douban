@@ -110,8 +110,7 @@ def page_not_found(error):
     return "wrong"
 
 app.config.update(
-    DEBUG = True,
-    SERVER_NAME = "127.0.0.1:8000"
+    DEBUG = True
 )
 
 if __name__ == '__main__':

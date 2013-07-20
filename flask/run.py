@@ -15,16 +15,12 @@ LAST_FETCH_TIMESTAMP = time.time()
 EXPIRE_TIME = 15 * 60
 # fetch result
 RESULT = []
-# fetch result backup
-RESULT_BACKUP = []
 # the info crawl class
 INFO_INSTANCE = InfoClas()
-# is under fetch again
-UNDER_FETCH = False
 
 
 def update():
-    global RESULT, INFO_INSTANCE, LAST_FETCH_TIMESTAMP, RESULT_BACKUP, UNDER_FETCH
+    global RESULT, INFO_INSTANCE, LAST_FETCH_TIMESTAMP
     # resest
     RESULT = []
     print "[fetch data]------>begin"
@@ -32,7 +28,6 @@ def update():
     print "[fetch data]------>data length:" + str(len(RESULT))
     print "[fetch data]------>end"
     LAST_FETCH_TIMESTAMP = time.time()
-    UNDER_FETCH = False
 
 update()
 
@@ -51,11 +46,9 @@ def isExpire():
 
 
 def search(keywords):
-    global RESULT, RESULT_BACKUP, UNDER_FETCH
+    global RESULT, RESULT_BACKUP
     result = [];
     total = RESULT[:]    
-    if UNDER_FETCH:
-        total = UNDER_FETCH[:]
     for item in total:
         title = item["title"]
         for word in keywords:
@@ -68,11 +61,9 @@ def search(keywords):
 
 @app.route('/refresh')
 def refresh():
-    global RESULT_BACKUP, UNDER_FETCH
     # if the data haven't update more than ten minutes
+    # 因为部署在平台上，只能使用单线程更新，只有更新完才能相应用户
     if isExpire():
-        RESULT_BACKUP = RESULT
-        UNDER_FETCH = True
         update()
     return json.dumps({
         'status': 'ok'
@@ -96,7 +87,7 @@ def analysis():
 
 @app.route('/fetch')
 def fetch():
-    global RESULT, LAST_FETCH_TIMESTAMP, RESULT_BACKUP
+    global RESULT, LAST_FETCH_TIMESTAMP
     keywords = request.args["param"].split("&")
     result = search(keywords);
     return json.dumps({
