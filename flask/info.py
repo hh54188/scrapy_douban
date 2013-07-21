@@ -37,6 +37,7 @@ class InfoClas(object):
             }
             item["title"] = link["title"]
             item["link"] = link["href"]
+            item["id"] = link["href"].split('/')[-2]
             self.RESULT.append(item)
 
             
@@ -51,5 +52,7 @@ class InfoClas(object):
                 self.__fetchSingle(link)
                 self.__showProgress(self.RESULT);
                 # print sys.getsizeof(self.RESULT)
-        return self.RESULT
+                # sorted
+                result_sorted = sorted(self.RESULT, key=lambda x: x['id'], reverse = True)
+        return result_sorted
         
