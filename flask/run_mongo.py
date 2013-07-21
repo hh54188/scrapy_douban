@@ -97,10 +97,19 @@ def refresh():
         'status': 'ok'
     })
 
+@app.route('/force')
+def force_refresh():
+    global RESULT
+    update()
+    return json.dumps({
+        'status': 'ok',
+        'data': len(RESULT)
+    })  
 
 @app.route('/')
 def welcome():
-    return render_template('index.html')
+    global RESULT
+    return render_template('index.html', data_length = len(RESULT))
     
 
 

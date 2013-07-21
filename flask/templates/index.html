@@ -362,6 +362,9 @@
                 </div>
             </div>
             <div class="span3 side_bar">
+                <div class="alert">
+                    目前共有<strong>{{ data_length }}</strong>条数据
+                </div>
                 <button class="btn-search btn btn-large btn-block btn-primary" type="button" disabled>请先选择关键词</button>
             </div>
         </div>
@@ -374,8 +377,12 @@
             <h4>为什么做这个应用</h4>
         </div>
         <div class="modal-body">
-        <p>几个月前在豆瓣找房的经历是痛苦的，因为我只想找知春路或者西土城一代的房子，但是豆瓣的小组不提供关键字搜索和按发帖时间排序排序（只把最新回复的排在前面。于是加了四个小组的我每天不得不面对海量的信息，而且这四个租房小组帖子的刷新频率非常高。你必须不停地刷新页面才能获得最新的信息。</p>
-        <p>这个工具解决的就是，只显示有你指定关键字的租房信息</p>
+        <p>几个月前在豆瓣找房的经历是痛苦的，因为我只想找知春路或者西土城一代的房子，但是豆瓣的小组不提供关键字搜索和按发帖时间排序排序。于是加了四个小组的我每天不得不面对海量的信息，而且这四个租房小组帖子的刷新频率非常高。你必须不停地刷新页面才能获得最新的信息。</p>
+        <p>这个工具解决了</p>
+        <ul>
+            <li>根据关键字搜索</li>
+            <li>把搜索结果按发帖时间（而不是回复）排序</li>
+        </ul>
         </div>
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">确定</button>
@@ -397,8 +404,8 @@
         </ol>
         <p><strong>注意事项：</strong></p>
         <ul>
-            <li>数据每十五分钟更新一次</li>
-            <li>目前只抓取四个租房小组，每个小组前十页的数据，大约在997条左右。四个小组分别是：</li>
+            <li>数据每十分钟更新一次</li>
+            <li>目前只抓取四个租房小组。四个小组分别是：</li>
             <li>
                 <ul>
                     <li><a href="http://www.douban.com/group/beijingzufang/discussion" target="_blank">北京租房小组</a></li>
@@ -407,7 +414,9 @@
                     <li><a href="http://www.douban.com/group/276176/discussion" target="_blank">北京出租房</a></li>
                 </ul>
             </li>
-            <li>如遇暂时无法搜索，请三分钟后再试，可能是后台更新数据中</li>
+            <li>因为部署平台原因，理想状态下应该有997条数据（每个小组的前十页），但很可能总是在几百条徘徊</li>
+            <li>因为部署平台原因，可能网页会有不能打开情况，请多刷新几次</li>
+            <li>如果有条件的同学可以部署在本机上，这样可自控时间间隔和数据条数，详见<a href="https://github.com/hh54188/scrapy_douban" target="_blank">技术参考</a></li>
         </ul>
         </div>
         <div class="modal-footer">
