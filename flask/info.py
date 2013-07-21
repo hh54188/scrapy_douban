@@ -13,7 +13,7 @@ class InfoClas(object):
 
     RESULT = []
     PAUSE_SECOND = 0
-    PAGE_NUM = 10
+    PAGE_NUM = 1
     
 
     def __init__(self):
@@ -37,7 +37,7 @@ class InfoClas(object):
             }
             item["title"] = link["title"]
             item["link"] = link["href"]
-            item["id"] = link["href"].split('/')[-2]
+            item["id"] = int(link["href"].split('/')[-2])
             self.RESULT.append(item)
 
             

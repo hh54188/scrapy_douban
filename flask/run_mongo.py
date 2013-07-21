@@ -6,44 +6,54 @@ import json
 import time
 from info import *
 from chart import *
+from mongo import *
 
 app = Flask(__name__)
 
 # the last fetch time
 LAST_FETCH_TIMESTAMP = time.time()
 # expire time
-EXPIRE_TIME = 10 * 60
+EXPIRE_TIME = 15 * 60
 # fetch result
 RESULT = []
 # the info crawl class
 INFO_INSTANCE = InfoClas()
+# mongo operation
+DB_INSTANCE = MongoDBClas()
 
 
 def update():
-    global RESULT, INFO_INSTANCE, LAST_FETCH_TIMESTAMP
+    global RESULT, INFO_INSTANCE, LAST_FETCH_TIMESTAMP, DB_INSTANCE
+    # resest
+    RESULT = []
     print "[fetch data]------>begin"
-    result_new = INFO_INSTANCE.fetch()
+    RESULT = INFO_INSTANCE.fetch()
     print "[fetch data]------>data length:" + str(len(RESULT))
     print "[fetch data]------>end"
     LAST_FETCH_TIMESTAMP = time.time()
+    # 数据获取完毕
 
+    # 从数据库中读取
+    RESULT_DB = DB_INSTANCE.findAll()
+    print "[DB operation]------>DB data length:" + str(len(RESULT_DB))
 
-    print "[DB operation]------>DB data length:" + str(len(RESULT))
     # 与新数据对比并且筛选
-    for new_item in result_new:
+    for new_item in RESULT:
         flag = False
-        for old_item in RESULT:
+        for old_item in RESULT_DB:
             if new_item["id"] == old_item["id"]:
                 flag = True
                 break
         if flag == False:
-            RESULT.append(new_item)
-    RESULT = sorted(RESULT, key=lambda x: x['id'], reverse = True)
-    print "[DB operation]------>merge data length:" + str(len(RESULT))
-
-    # 只保留1000条数据
+            RESULT_DB.append(new_item)
+    RESULT = sorted(RESULT_DB, key=lambda x: x['id'], reverse = True)
+    print "[DB operation]------>merge data length:" + str(len(RESULT_DB))
     if len(RESULT) > 1000:
         RESULT = RESULT[:1000]
+
+    # 清空并且重写
+    DB_INSTANCE.clear()
+    DB_INSTANCE.save(RESULT)
 
 
 update()
@@ -63,9 +73,9 @@ def isExpire():
 
 
 def search(keywords):
-    global RESULT, RESULT_BACKUP
+    global RESULT, DB_INSTANCE
     result = [];
-    total = RESULT[:]    
+    total = DB_INSTANCE.findAll()
     for item in total:
         title = item["title"]
         for word in keywords:
@@ -73,7 +83,7 @@ def search(keywords):
                 result.append(item)
                 total.remove(item)
                 break
-    result = sorted(result, key=lambda x: x['id'], reverse = True)
+    result = sorted(result, key=lambda x: x['id'], reverse = True)                
     return result
 
 
@@ -101,14 +111,6 @@ def analysis():
     result = instance.analysis(RESULT)
     return json.dumps(result)
     
-
-@app.route('/data')
-def dataLength():
-    global RESULT
-    return json.dumps({
-        'status': 'ok',
-        'data': len(RESULT)
-    })
 
 
 @app.route('/fetch')

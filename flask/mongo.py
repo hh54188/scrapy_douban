@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*- 
 import pymongo
+import os
 from pymongo import MongoClient
 
 class MongoDBClas(object):
@@ -7,12 +9,20 @@ class MongoDBClas(object):
     collection = db.douban
 
     def __init__(self):
-        print self.collection
         pass
 
-    def save():
-        pass
+    def findAll(self):
+        result = []
+        for doc in self.collection.find({}):
+            doc.pop("_id", None)
+            result.append(doc)
+        return result
 
-db = MongoDBClas()
+    def save(self, item):
+        return self.collection.insert(item) 
+
+    def clear(self):
+        return self.collection.remove()
+
 
         
