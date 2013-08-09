@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*- 
 from flask import Flask
+from pymongo import MongoClient
 
 app = Flask(__name__)
+
+client = MongoClient('localhost', 27017)
+db = client.test
+
+print db
 
 @app.route('/')
 def welcome():
