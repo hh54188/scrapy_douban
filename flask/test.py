@@ -7,6 +7,7 @@ app = Flask(__name__)
 client = MongoClient('localhost', 27017)
 db = client.test
 
+print "The MongoDB is:-------->"
 print db
 
 @app.route('/')
