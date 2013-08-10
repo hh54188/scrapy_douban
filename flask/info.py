@@ -26,7 +26,11 @@ class InfoClas(object):
 
 
     def __fetchSingle(self, url):
-        page = urllib2.urlopen(url)
+        try:
+            page = urllib2.urlopen(url)
+        except:
+            return
+
         soup = BeautifulSoup(page)
         collection = soup.select("table.olt td.title a")
 
