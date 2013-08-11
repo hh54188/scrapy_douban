@@ -4,9 +4,11 @@ import os
 from pymongo import MongoClient
 
 class MongoDBClas(object):
-    client = MongoClient('localhost', 27017)
-    db = client.test
-    collection = db.douban
+
+    MONGO_URL = os.environ.get('MONGOHQ_URL')
+    Connection = MongoClient(MONGO_URL)
+    DB = Connection.app17014052
+    collection = DB.douban
 
     def __init__(self):
         pass

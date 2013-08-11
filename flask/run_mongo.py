@@ -13,7 +13,7 @@ app = Flask(__name__)
 # the last fetch time
 LAST_FETCH_TIMESTAMP = time.time()
 # expire time
-EXPIRE_TIME = 15 * 60
+EXPIRE_TIME = 10 * 60
 # fetch result
 RESULT = []
 # the info crawl class
@@ -48,8 +48,8 @@ def update():
             RESULT_DB.append(new_item)
     RESULT = sorted(RESULT_DB, key=lambda x: x['id'], reverse = True)
     print "[DB operation]------>merge data length:" + str(len(RESULT_DB))
-    if len(RESULT) > 1000:
-        RESULT = RESULT[:1000]
+    if len(RESULT) > 2000:
+        RESULT = RESULT[:2000]
 
     # 清空并且重写
     DB_INSTANCE.clear()
@@ -120,7 +120,13 @@ def analysis():
     result = instance.analysis(RESULT)
     return json.dumps(result)
     
-
+@app.route('/data')
+def dataLength():
+    global RESULT
+    return json.dumps({
+        'status': 'ok',
+        'data': len(RESULT)
+    })
 
 @app.route('/fetch')
 def fetch():
@@ -138,10 +144,13 @@ def page_not_found(error):
     return "wrong"
 
 
-app.config.update(
-    DEBUG = True,
-    SERVER_NAME = "127.0.0.1:8000"
-)
-
 if __name__ == '__main__':
-    app.run(use_reloader = False)
+    app.run()
+
+# app.config.update(
+#     DEBUG = True,
+#     SERVER_NAME = "127.0.0.1:8000"
+# )
+
+# if __name__ == '__main__':
+#     app.run(use_reloader = False)

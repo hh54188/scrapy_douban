@@ -1,19 +1,28 @@
 # -*- coding: utf-8 -*- 
-from flask import Flask, url_for
-from flask import request
-from flask import render_template
-from blinker import *
 
+import os
+from flask import Flask
+from pymongo import MongoClient
 
-app = Flask(__name__) 
+app = Flask(__name__)
+
+MONGO_URL = "mongodb://li:guangyi@dharma.mongohq.com:10010/app17014052"
+Connection = MongoClient(MONGO_URL)
+DB = Connection.app17014052
+collection = DB.TestDB
+
+def count():
+
+    return collection.count()
 
 @app.route('/')
 def welcome():
-    return "OK"
+    global collection
+    return str(collection.count())
 
-app.config.update(
-    DEBUG = True
-)
+@app.errorhandler(404)
+def page_not_found(error):
+    return "wrong"
 
 if __name__ == '__main__':
-    app.run(use_reloader = False)
+    app.run()
