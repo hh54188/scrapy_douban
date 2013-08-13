@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>豆瓣租房</title>
+    <meta name="baidu-site-verification" content="8xTAL0U4V8" />
     <script type="text/javascript" src="{{ url_for('static', filename='build/js/lib.min.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/css/style.min.css') }}">
 </head>
@@ -25,7 +26,8 @@
                         最多只允许10个关键字
                     </div>
                     <ul class="nav nav-tabs">
-                        <li class="dropdown active">
+                        <li class="active"><a data-toggle="tab" href="#select_box-latest50">最新50条</a></li>
+                        <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">地铁<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a data-toggle="tab" href="#select_box-line13">13号线</a></li>
@@ -47,7 +49,12 @@
                         <li class=""><a data-toggle="tab" href="#select_box-lineOther">其他</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div id="select_box-line13" class="tab-pane active">
+                        <div id="select_box-latest50" class="tab-pane active">
+                            {% for item in data %}
+                                <li><a target="_blank" href="{{ item.link }}">{{ item.title }}</a></li>
+                            {% endfor %}
+                        </div>
+                        <div id="select_box-line13" class="tab-pane">
                             <span class="label label-warning">13号线</span>
                             <button class="btn btn-small btn-keyword" >西直门</button>
                             <button class="btn btn-small btn-keyword" >大钟寺</button>

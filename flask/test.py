@@ -6,10 +6,10 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 
-MONGO_URL = "mongodb://li:guangyi@dharma.mongohq.com:10010/app17014052"
-Connection = MongoClient(MONGO_URL)
-DB = Connection.app17014052
-collection = DB.TestDB
+Connection = MongoClient("localhost", 27017);
+DB = Connection.test;
+Collection = DB.douban
+print Collection.count()
 
 def count():
 

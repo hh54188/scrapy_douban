@@ -109,7 +109,7 @@ def force_refresh():
 @app.route('/')
 def welcome():
     global RESULT
-    return render_template('index.html', data_length = len(RESULT))
+    return render_template('index.html', data_length = len(RESULT), data = RESULT[:50])
     
 
 
