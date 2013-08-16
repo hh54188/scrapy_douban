@@ -48,8 +48,8 @@ def update():
             RESULT_DB.append(new_item)
     RESULT = sorted(RESULT_DB, key=lambda x: x['id'], reverse = True)
     print "[DB operation]------>merge data length:" + str(len(RESULT_DB))
-    if len(RESULT) > 2000:
-        RESULT = RESULT[:2000]
+    if len(RESULT) > 4000:
+        RESULT = RESULT[:4000]
 
     # 清空并且重写
     DB_INSTANCE.clear()
@@ -97,14 +97,14 @@ def refresh():
         'status': 'ok'
     })
 
-@app.route('/force')
-def force_refresh():
-    global RESULT
-    update()
-    return json.dumps({
-        'status': 'ok',
-        'data': len(RESULT)
-    })  
+# @app.route('/force')
+# def force_refresh():
+#     global RESULT
+#     update()
+#     return json.dumps({
+#         'status': 'ok',
+#         'data': len(RESULT)
+#     })  
 
 @app.route('/')
 def welcome():

@@ -5,6 +5,11 @@
     <meta name="baidu-site-verification" content="8xTAL0U4V8" />
     <script type="text/javascript" src="{{ url_for('static', filename='build/js/lib.min.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/css/style.min.css') }}">
+    <!-- 百度统计代码 -->
+    <script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ffbad19125db76372b28f7715ffffdbb2' type='text/javascript'%3E%3C/script%3E"));
+    </script>
 </head>
 <body>    
     <div class="container">
@@ -21,6 +26,10 @@
                 </ul>               
                 <hr>
                 <div class="select_box">
+                    <div class="alert alert-info">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        8.16更新：1.新增六个租房小组，目前总数共有十个；2.存储数据增至4000条
+                    </div>                    
                     <div class="alert">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         最多只允许10个关键字
@@ -419,6 +428,14 @@
                     <li><a href="http://www.douban.com/group/fangzi/discussion" target="_blank">豆瓣租房小组</a></li>
                     <li><a href="http://www.douban.com/group/262626/discussion" target="_blank">北京无中介租房小组</a></li>
                     <li><a href="http://www.douban.com/group/276176/discussion" target="_blank">北京出租房</a></li>
+
+                    <li><a href="http://www.douban.com/group/26926/discussion" target="_blank">北京租房豆瓣</a></li>
+                    <li><a href="http://www.douban.com/group/sweethome/discussion" target="_blank">北京租房（密探）</a></li>
+                    <li><a href="http://www.douban.com/group/242806/discussion" target="_blank">北京租房！找伴儿一起住一个房间！</a></li>
+                    <li><a href="http://www.douban.com/group/257523/discussion" target="_blank">北京租房房东联盟(中介勿扰) </a></li>                    
+
+                    <li><a href="http://www.douban.com/group/279962/discussion" target="_blank">北京租房（非中介）</a></li>
+                    <li><a href="http://www.douban.com/group/334449/discussion" target="_blank">北京租房合租房</a></li>   
                 </ul>
             </li>
             <li>因为部署平台原因，理想状态下应该有997条数据（每个小组的前十页），但很可能总是在几百条徘徊</li>
@@ -467,4 +484,15 @@
     </div>     
 </body>
 <script type="text/javascript" src="{{ url_for('static', filename='build/js/script.min.js') }}"></script>
+<!-- google统计代码 -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38061225-3', 'herokuapp.com');
+  ga('send', 'pageview');
+
+</script>
 </html>
