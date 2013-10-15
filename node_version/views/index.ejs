@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EJS TEMPLATE</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var test = function () {
+            $.ajax({
+                type: "get",
+                url: '/fetch',
+                data: {
+                    name: 'lee'
+                },
+                success: function (data) {
+                    console.log(typeof data);
+                }
+            })
+        }
+
+        $(function () {
+            var btn = $("button");
+            btn.click(function () {
+                test();
+            })
+        })
+    </script>
+</head>
+<body>
+    <button>FETCH</button>
+</body>
+</html>
