@@ -15,6 +15,41 @@ var FETCH_URLS = [
 ];
 
 var FETCH_PAGE_NUM = 2;
+var COMPLETE_FLAG = 0;
+var RES = {};
+
+var pageRequest = function (res, url) {
+
+    COMPLETE_FLAG++;
+
+    request({
+        uri: url,
+    }, function(error, response, body) {
+        
+        if (error) {
+            COMPLETE_FLAG--;
+            return;
+        }
+
+        var $ = cheerio.load(body);
+        var links = $("table.olt td.title a");
+
+        links.map(function (i, link) {
+            var href = $(link).attr('href');
+            var title = $(link).attr('title');
+            var id = href.split('/')[5];
+
+            RES[id] = href;
+            console.log(id);
+        });
+
+        COMPLETE_FLAG--;
+
+        if (!COMPLETE_FLAG) {
+            res.send(RES);
+        }
+    });
+};
 
 exports.fetch = function (req, res) {
 
@@ -23,28 +58,8 @@ exports.fetch = function (req, res) {
 
         // Loop 2
         for (var i = 0; i < FETCH_PAGE_NUM; i++) {
-            url = url + "?start=" + 25 * i;
-
-            request({
-                uri: url,
-            }, function(error, response, body) {
-
-                if (error) return;
-
-                var $ = cheerio.load(body);
-                var links = $("table.olt td.title a");
-
-                links.map(function (i, link) {
-                    var href = $(link).attr('href');
-                    var title = $(link).attr('title');
-                    var id = href.split('/')[5];
-
-                    console.log(id);
-                });
-            });
+            var temp_url = url + "?start=" + 25 * i;
+            pageRequest(res, temp_url);
         }
-        
-
-        res.send("OK");
     });
 };

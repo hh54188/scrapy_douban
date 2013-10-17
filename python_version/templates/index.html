@@ -1,0 +1,498 @@
+<!doctype html>
+<html>
+<head>
+    <title>豆瓣租房</title>
+    <meta name="baidu-site-verification" content="8xTAL0U4V8" />
+    <script type="text/javascript" src="{{ url_for('static', filename='build/js/lib.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/css/style.min.css') }}">
+    <!-- 百度统计代码 -->
+    <script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ffbad19125db76372b28f7715ffffdbb2' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</head>
+<body>    
+    <div class="container">
+        <div class="row">
+            <div class="span9">
+                <div class="page-header">
+                    <h1>豆瓣租房小工具</h1>
+                </div>
+                <ul>
+                    <li><a data-toggle="modal" href="#modal_why">为什么做这个工具</a></li>
+                    <li><a data-toggle="modal" href="#modal_how" href="#">使用指南</a></li>
+                    <li><a data-toggle="modal" href="#modal_advice" href="#">不能用了，意见反馈</a></li>
+                    <li><a href="https://github.com/hh54188/scrapy_douban" target="_blank">技术参考</a></li>
+                </ul>               
+                <hr>
+                <div class="select_box">
+                    <div class="alert alert-info">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        8.16更新：1.新增六个租房小组，目前总数共有十个；2.存储数据增至4000条
+                    </div>                    
+                    <div class="alert">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        最多只允许10个关键字
+                    </div>
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#select_box-latest50">最新50条</a></li>
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">地铁<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a data-toggle="tab" href="#select_box-line13">13号线</a></li>
+                                <li><a data-toggle="tab" href="#select_box-line10">10号线</a></li>
+                                <li><a data-toggle="tab" href="#select_box-line4">4号线</a></li>
+                                <li><a data-toggle="tab" href="#select_box-line5">5号线</a></li>
+                                <li><a data-toggle="tab" href="#select_box-line8">8号线</a></li>      
+                                <li><a data-toggle="tab" href="#select_box-line6">6号线</a></li>
+                                <li><a data-toggle="tab" href="#select_box-line9">9号线</a></li>      
+                                <li><a data-toggle="tab" href="#select_box-line2">2号线</a></li>    
+                                <li><a data-toggle="tab" href="#select_box-line1">1号线</a></li>      
+                                <li><a data-toggle="tab" href="#select_box-lineChangpin">昌平线</a></li>    
+                                <li><a data-toggle="tab" href="#select_box-lineBatong">八通线</a></li>      
+                                <li><a data-toggle="tab" href="#select_box-lineYizhuang">亦庄线</a></li>
+                                <li><a data-toggle="tab" href="#select_box-lineFangshan">房山线</a></li>
+                            </ul>
+                        </li>
+                        <li class=""><a data-toggle="tab" href="#select_box-lineArea">市辖区</a></li>
+                        <li class=""><a data-toggle="tab" href="#select_box-lineOther">其他</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="select_box-latest50" class="tab-pane active">
+                            {% for item in data %}
+                                <li><a target="_blank" href="{{ item.link }}">{{ item.title }}</a></li>
+                            {% endfor %}
+                        </div>
+                        <div id="select_box-line13" class="tab-pane">
+                            <span class="label label-warning">13号线</span>
+                            <button class="btn btn-small btn-keyword" >西直门</button>
+                            <button class="btn btn-small btn-keyword" >大钟寺</button>
+                            <button class="btn btn-small btn-keyword" >知春路</button>
+                            <button class="btn btn-small btn-keyword" >五道口</button>
+                            <button class="btn btn-small btn-keyword" >上地</button>     
+                            <button class="btn btn-small btn-keyword" >西二旗</button>     
+                            <button class="btn btn-small btn-keyword" >龙泽</button>     
+                            <button class="btn btn-small btn-keyword" >回龙观</button>     
+                            <button class="btn btn-small btn-keyword" >霍营</button>     
+                            <button class="btn btn-small btn-keyword" >立水桥</button>     
+                            <button class="btn btn-small btn-keyword" >望京</button>     
+                            <button class="btn btn-small btn-keyword" >芍药居</button>     
+                            <button class="btn btn-small btn-keyword" >光熙门</button>     
+                            <button class="btn btn-small btn-keyword" >柳芳</button>     
+                            <button class="btn btn-small btn-keyword" >东直门</button>       
+                        </div>
+                        <div id="select_box-line10" class="tab-pane">
+                            <span class="label label-warning">10号线</span>
+                            <button class="btn btn-small btn-keyword" >巴沟</button>
+                            <button class="btn btn-small btn-keyword" >苏州街</button>
+                            <button class="btn btn-small btn-keyword" >海淀黄庄</button>
+                            <button class="btn btn-small btn-keyword" >知春里</button>
+                            <button class="btn btn-small btn-keyword" >知春路</button>
+                            <button class="btn btn-small btn-keyword" >西土城</button>
+                            <button class="btn btn-small btn-keyword" >牡丹园</button>
+                            <button class="btn btn-small btn-keyword" >健德门</button>
+                            <button class="btn btn-small btn-keyword" >北土城</button>
+                            <button class="btn btn-small btn-keyword" >安贞门</button>
+                            <button class="btn btn-small btn-keyword" >惠新西街南口</button>
+                            <button class="btn btn-small btn-keyword" >芍药居</button>
+                            <button class="btn btn-small btn-keyword" >太阳宫</button>
+                            <button class="btn btn-small btn-keyword" >三元桥</button>
+                            <button class="btn btn-small btn-keyword" >亮马桥</button>
+                            <button class="btn btn-small btn-keyword" >农业展览馆</button>
+                            <button class="btn btn-small btn-keyword" >团结湖</button>
+                            <button class="btn btn-small btn-keyword" >呼家楼</button>
+                            <button class="btn btn-small btn-keyword" >金台夕照</button>
+                            <button class="btn btn-small btn-keyword" >国贸</button>
+                            <button class="btn btn-small btn-keyword" >双井</button>
+                            <button class="btn btn-small btn-keyword" >劲松</button>
+                            <button class="btn btn-small btn-keyword" >潘家园</button>
+                            <button class="btn btn-small btn-keyword" >十里河</button>
+                            <button class="btn btn-small btn-keyword" >分钟寺</button>
+                            <button class="btn btn-small btn-keyword" >成寿寺</button>
+                            <button class="btn btn-small btn-keyword" >宋家庄</button>
+                            <button class="btn btn-small btn-keyword" >石榴庄</button>
+                            <button class="btn btn-small btn-keyword" >大红门</button>
+                            <button class="btn btn-small btn-keyword" >角门东</button>
+                            <button class="btn btn-small btn-keyword" >角门西</button>
+                            <button class="btn btn-small btn-keyword" >草桥</button>
+                            <button class="btn btn-small btn-keyword" >首经贸</button>
+                            <button class="btn btn-small btn-keyword" >丰台站</button>
+                            <button class="btn btn-small btn-keyword" >泥洼</button>
+                            <button class="btn btn-small btn-keyword" >西局</button>
+                            <button class="btn btn-small btn-keyword" >六里桥</button>
+                            <button class="btn btn-small btn-keyword" >莲花桥</button>
+                            <button class="btn btn-small btn-keyword" >公主坟</button>
+                            <button class="btn btn-small btn-keyword" >西钓鱼台</button>
+                            <button class="btn btn-small btn-keyword" >慈寿寺</button>
+                            <button class="btn btn-small btn-keyword" >车道沟</button>
+                            <button class="btn btn-small btn-keyword" >长春桥</button>
+                            <button class="btn btn-small btn-keyword" >火器营</button>
+                        </div>
+                        <div id="select_box-line4" class="tab-pane">
+                            <span class="label label-warning">4号线</span>
+                            <button class="btn btn-small btn-keyword" >安河桥北</button>
+                            <button class="btn btn-small btn-keyword" >北宫门</button>
+                            <button class="btn btn-small btn-keyword" >西苑</button>
+                            <button class="btn btn-small btn-keyword" >圆明园</button>
+                            <button class="btn btn-small btn-keyword" >北京大学东门</button>
+                            <button class="btn btn-small btn-keyword" >中关村</button>
+                            <button class="btn btn-small btn-keyword" >海淀黄庄</button>
+                            <button class="btn btn-small btn-keyword" >人民大学</button>
+                            <button class="btn btn-small btn-keyword" >魏公村</button>
+                            <button class="btn btn-small btn-keyword" >国家图书馆</button>
+                            <button class="btn btn-small btn-keyword" >动物园</button>
+                            <button class="btn btn-small btn-keyword" >西直门</button>
+                            <button class="btn btn-small btn-keyword" >新街口</button>
+                            <button class="btn btn-small btn-keyword" >平安里</button>
+                            <button class="btn btn-small btn-keyword" >西四</button>
+                            <button class="btn btn-small btn-keyword" >灵境胡同</button>
+                            <button class="btn btn-small btn-keyword" >西单</button>
+                            <button class="btn btn-small btn-keyword" >宣武门</button>
+                            <button class="btn btn-small btn-keyword" >菜市口</button>
+                            <button class="btn btn-small btn-keyword" >陶然亭</button>
+                            <button class="btn btn-small btn-keyword" >北京南站</button>
+                            <button class="btn btn-small btn-keyword" >马家堡</button>
+                            <button class="btn btn-small btn-keyword" >角门西</button>
+                            <button class="btn btn-small btn-keyword" >公益西桥</button>
+                            <button class="btn btn-small btn-keyword" >新宫</button>
+                            <button class="btn btn-small btn-keyword" >西红门</button>
+                            <button class="btn btn-small btn-keyword" >高米店北</button>
+                            <button class="btn btn-small btn-keyword" >高米店南</button>
+                            <button class="btn btn-small btn-keyword" >枣园</button>
+                            <button class="btn btn-small btn-keyword" >清源路</button>
+                            <button class="btn btn-small btn-keyword" >黄村西大街</button>
+                            <button class="btn btn-small btn-keyword" >黄村火车站</button>
+                            <button class="btn btn-small btn-keyword" >义和庄</button>
+                            <button class="btn btn-small btn-keyword" >生物医药基地</button>
+                            <button class="btn btn-small btn-keyword" >天宫院</button>
+                        </div>
+                        <div id="select_box-line5" class="tab-pane">
+                            <span class="label label-warning">5号线</span>
+                            <button class="btn btn-small btn-keyword" >天通苑北</button>
+                            <button class="btn btn-small btn-keyword" >天通苑</button>
+                            <button class="btn btn-small btn-keyword" >天通苑南</button>
+                            <button class="btn btn-small btn-keyword" >立水桥</button>
+                            <button class="btn btn-small btn-keyword" >立水桥南</button>
+                            <button class="btn btn-small btn-keyword" >北苑路北</button>
+                            <button class="btn btn-small btn-keyword" >大屯路东</button>
+                            <button class="btn btn-small btn-keyword" >惠新西街北口</button>
+                            <button class="btn btn-small btn-keyword" >惠新西街南口</button>
+                            <button class="btn btn-small btn-keyword" >和平西桥</button>
+                            <button class="btn btn-small btn-keyword" >和平里北街</button>
+                            <button class="btn btn-small btn-keyword" >雍和宫</button>
+                            <button class="btn btn-small btn-keyword" >北新桥</button>
+                            <button class="btn btn-small btn-keyword" >张自忠路</button>
+                            <button class="btn btn-small btn-keyword" >东四</button>
+                            <button class="btn btn-small btn-keyword" >灯市口</button>
+                            <button class="btn btn-small btn-keyword" >东单</button>
+                            <button class="btn btn-small btn-keyword" >崇文门</button>
+                            <button class="btn btn-small btn-keyword" >磁器口</button>
+                            <button class="btn btn-small btn-keyword" >天坛东门</button>
+                            <button class="btn btn-small btn-keyword" >蒲黄榆</button>
+                            <button class="btn btn-small btn-keyword" >刘家窑</button>
+                            <button class="btn btn-small btn-keyword" >宋家庄</button>
+                        </div>
+                        <div id="select_box-line8" class="tab-pane">
+                            <span class="label label-warning">8号线</span>
+                            <button class="btn btn-small btn-keyword" >回龙观东大街</button>
+                            <button class="btn btn-small btn-keyword" >霍营</button>
+                            <button class="btn btn-small btn-keyword" >育新</button>
+                            <button class="btn btn-small btn-keyword" >西小口</button>
+                            <button class="btn btn-small btn-keyword" >永泰庄</button>
+                            <button class="btn btn-small btn-keyword" >林萃桥</button>
+                            <button class="btn btn-small btn-keyword" >森林公园南门</button>
+                            <button class="btn btn-small btn-keyword" >奥林匹克公园</button>
+                            <button class="btn btn-small btn-keyword" >奥体中心</button>
+                            <button class="btn btn-small btn-keyword" >北土城</button>
+                            <button class="btn btn-small btn-keyword" >安华桥</button>
+                            <button class="btn btn-small btn-keyword" >安德里北街</button>
+                            <button class="btn btn-small btn-keyword" >鼓楼大街</button>
+                        </div>
+                        <div id="select_box-line6" class="tab-pane">
+                            <span class="label label-warning">6号线</span>
+                            <button class="btn btn-small btn-keyword" >草房</button>
+                            <button class="btn btn-small btn-keyword" >常营</button>
+                            <button class="btn btn-small btn-keyword" >黄渠</button>
+                            <button class="btn btn-small btn-keyword" >褡裢坡</button>
+                            <button class="btn btn-small btn-keyword" >青年路</button>
+                            <button class="btn btn-small btn-keyword" >十里堡</button>
+                            <button class="btn btn-small btn-keyword" >金台路</button>
+                            <button class="btn btn-small btn-keyword" >呼家楼</button>
+                            <button class="btn btn-small btn-keyword" >东大桥</button>
+                            <button class="btn btn-small btn-keyword" >朝阳门</button>
+                            <button class="btn btn-small btn-keyword" >东四</button>
+                            <button class="btn btn-small btn-keyword" >南锣鼓巷</button>
+                            <button class="btn btn-small btn-keyword" >北海北</button>
+                            <button class="btn btn-small btn-keyword" >平安里</button>
+                            <button class="btn btn-small btn-keyword" >车公庄</button>
+                            <button class="btn btn-small btn-keyword" >车公庄西</button>
+                            <button class="btn btn-small btn-keyword" >白石桥南</button>
+                            <button class="btn btn-small btn-keyword" >花园桥</button>
+                            <button class="btn btn-small btn-keyword" >慈寿寺</button>
+                            <button class="btn btn-small btn-keyword" >海淀五路居</button>
+                        </div>
+                        <div id="select_box-line9" class="tab-pane">
+                            <span class="label label-warning">9号线</span>
+                            <button class="btn btn-small btn-keyword" >国家图书馆</button>
+                            <button class="btn btn-small btn-keyword" >白石桥南</button>
+                            <button class="btn btn-small btn-keyword" >白堆子</button>
+                            <button class="btn btn-small btn-keyword" >北京西站</button>
+                            <button class="btn btn-small btn-keyword" >六里桥东</button>
+                            <button class="btn btn-small btn-keyword" >六里桥</button>
+                            <button class="btn btn-small btn-keyword" >七里庄</button>
+                            <button class="btn btn-small btn-keyword" >丰台东大街</button>
+                            <button class="btn btn-small btn-keyword" >丰台南路</button>
+                            <button class="btn btn-small btn-keyword" >科怡路</button>
+                            <button class="btn btn-small btn-keyword" >丰台科技园</button>
+                            <button class="btn btn-small btn-keyword" >郭公庄</button>
+                        </div>
+                        <div id="select_box-line2" class="tab-pane">
+                            <span class="label label-warning">2号线</span>
+                            <button class="btn btn-small btn-keyword" >西直门</button>
+                            <button class="btn btn-small btn-keyword" >车公庄</button>
+                            <button class="btn btn-small btn-keyword" >阜成门</button>
+                            <button class="btn btn-small btn-keyword" >复兴门</button>
+                            <button class="btn btn-small btn-keyword" >长椿街</button>
+                            <button class="btn btn-small btn-keyword" >宣武门</button>
+                            <button class="btn btn-small btn-keyword" >和平门</button>
+                            <button class="btn btn-small btn-keyword" >前 门</button>
+                            <button class="btn btn-small btn-keyword" >崇文门</button>
+                            <button class="btn btn-small btn-keyword" >北京站</button>
+                            <button class="btn btn-small btn-keyword" >建国门</button>
+                            <button class="btn btn-small btn-keyword" >朝阳门</button>
+                            <button class="btn btn-small btn-keyword" >东四十条</button>
+                            <button class="btn btn-small btn-keyword" >东直门</button>
+                            <button class="btn btn-small btn-keyword" >雍和宫</button>
+                            <button class="btn btn-small btn-keyword" >安定门</button>
+                            <button class="btn btn-small btn-keyword" >鼓楼大街</button>
+                            <button class="btn btn-small btn-keyword" >积水潭</button>
+                        </div>
+                        <div id="select_box-line1" class="tab-pane">
+                            <span class="label label-warning">1号线</span>
+                            <button class="btn btn-small btn-keyword" >苹果园</button>
+                            <button class="btn btn-small btn-keyword" >古城路</button>
+                            <button class="btn btn-small btn-keyword" >八角游乐园</button>
+                            <button class="btn btn-small btn-keyword" >八宝山</button>
+                            <button class="btn btn-small btn-keyword" >玉泉路</button>
+                            <button class="btn btn-small btn-keyword" >五棵松</button>
+                            <button class="btn btn-small btn-keyword" >万寿路</button>
+                            <button class="btn btn-small btn-keyword" >公主坟</button>
+                            <button class="btn btn-small btn-keyword" >军事博物馆</button>
+                            <button class="btn btn-small btn-keyword" >木樨地</button>
+                            <button class="btn btn-small btn-keyword" >南礼士路</button>
+                            <button class="btn btn-small btn-keyword" >复兴门</button>
+                            <button class="btn btn-small btn-keyword" >西单</button>
+                            <button class="btn btn-small btn-keyword" >天安门西</button>
+                            <button class="btn btn-small btn-keyword" >天安门东</button>
+                            <button class="btn btn-small btn-keyword" >王府井</button>
+                            <button class="btn btn-small btn-keyword" >东单</button>
+                            <button class="btn btn-small btn-keyword" >建国门</button>
+                            <button class="btn btn-small btn-keyword" >国贸</button>
+                            <button class="btn btn-small btn-keyword" >大望路</button>
+                            <button class="btn btn-small btn-keyword" >四惠</button>
+                            <button class="btn btn-small btn-keyword" >四惠东</button>
+                        </div>
+                        <div id="select_box-lineChangpin" class="tab-pane">
+                             <span class="label label-warning">昌平线</span>
+                             <button class="btn btn-small btn-keyword" >南邵</button>
+                             <button class="btn btn-small btn-keyword" >沙河高教园</button>
+                             <button class="btn btn-small btn-keyword" >沙河</button>
+                             <button class="btn btn-small btn-keyword" >巩华城</button>
+                             <button class="btn btn-small btn-keyword" >朱辛庄</button>
+                             <button class="btn btn-small btn-keyword" >生命科学园</button>
+                             <button class="btn btn-small btn-keyword" >西二旗</button>
+                        </div>
+                        <div id="select_box-lineBatong" class="tab-pane">
+                            <span class="label label-warning">八通线</span>
+                            <button class="btn btn-small btn-keyword" >四惠</button>
+                            <button class="btn btn-small btn-keyword" >四惠东</button>
+                            <button class="btn btn-small btn-keyword" >高碑店</button>
+                            <button class="btn btn-small btn-keyword" >传媒大学</button>
+                            <button class="btn btn-small btn-keyword" >双桥</button>
+                            <button class="btn btn-small btn-keyword" >管庄</button>
+                            <button class="btn btn-small btn-keyword" >八里桥</button>
+                            <button class="btn btn-small btn-keyword" >北苑</button>
+                            <button class="btn btn-small btn-keyword" >果园</button>
+                            <button class="btn btn-small btn-keyword" >九棵树</button>
+                            <button class="btn btn-small btn-keyword" >梨园</button>
+                            <button class="btn btn-small btn-keyword" >临河里</button>
+                            <button class="btn btn-small btn-keyword" >土桥</button>
+                        </div>
+                        <div id="select_box-lineYizhuang" class="tab-pane">
+                             <span class="label label-warning">亦庄线</span>
+                             <button class="btn btn-small btn-keyword" >宋家庄</button>
+                             <button class="btn btn-small btn-keyword" >肖村</button>
+                             <button class="btn btn-small btn-keyword" >小红门</button>
+                             <button class="btn btn-small btn-keyword" >旧宫</button>
+                             <button class="btn btn-small btn-keyword" >亦庄桥</button>
+                             <button class="btn btn-small btn-keyword" >亦庄文化园</button>
+                             <button class="btn btn-small btn-keyword" >万源街</button>
+                             <button class="btn btn-small btn-keyword" >荣京东街</button>
+                             <button class="btn btn-small btn-keyword" >荣昌东街</button>
+                             <button class="btn btn-small btn-keyword" >同济南路</button>
+                             <button class="btn btn-small btn-keyword" >经海路</button>
+                             <button class="btn btn-small btn-keyword" >次渠南</button>
+                             <button class="btn btn-small btn-keyword" >次渠</button>
+                        </div>                        
+                        <div id="select_box-lineFangshan" class="tab-pane">
+                             <span class="label label-warning">房山线</span>
+                             <button class="btn btn-small btn-keyword" >郭公庄</button>
+                             <button class="btn btn-small btn-keyword" >大葆台</button>
+                             <button class="btn btn-small btn-keyword" >稻田</button>
+                             <button class="btn btn-small btn-keyword" >长阳</button>
+                             <button class="btn btn-small btn-keyword" >篱笆房</button>
+                             <button class="btn btn-small btn-keyword" >广阳城</button>
+                             <button class="btn btn-small btn-keyword" >良乡大学城北</button>
+                             <button class="btn btn-small btn-keyword" >良乡大学城</button>
+                             <button class="btn btn-small btn-keyword" >良乡大学城西</button>
+                             <button class="btn btn-small btn-keyword" >良乡南关</button>
+                             <button class="btn btn-small btn-keyword" >苏庄</button>
+                        </div>                     
+                        <div id="select_box-lineArea" class="tab-pane">
+                             <span class="label label-warning">辖区</span>
+                             <button class="btn btn-small btn-keyword" >东城</button>
+                             <button class="btn btn-small btn-keyword" >西城</button>
+                             <button class="btn btn-small btn-keyword" >海淀</button>
+                             <button class="btn btn-small btn-keyword" >朝阳</button>
+                             <button class="btn btn-small btn-keyword" >丰台</button>
+                             <button class="btn btn-small btn-keyword" >石景山</button>
+                             <button class="btn btn-small btn-keyword" >通州</button>
+                             <button class="btn btn-small btn-keyword" >顺义</button>
+                             <button class="btn btn-small btn-keyword" >房山</button>
+                             <button class="btn btn-small btn-keyword" >大兴</button>
+                             <button class="btn btn-small btn-keyword" >昌平</button>
+                             <button class="btn btn-small btn-keyword" >怀柔</button>
+                             <button class="btn btn-small btn-keyword" >平谷</button>
+                             <button class="btn btn-small btn-keyword" >门头沟</button>
+                             <button class="btn btn-small btn-keyword" >密云</button>
+                             <button class="btn btn-small btn-keyword" >延庆</button>
+                        </div>  
+                        <div id="select_box-lineOther" class="tab-pane">
+                            <button class="btn btn-small btn-keyword" >合租</button>
+                            <button class="btn btn-small btn-keyword" >主卧</button>
+                            <button class="btn btn-small btn-keyword" >次卧</button>
+                            <button class="btn btn-small btn-keyword" >男</button>
+                            <button class="btn btn-small btn-keyword" >女</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="span3 side_bar">
+                <div class="alert">
+                    目前共有<strong>{{ data_length }}</strong>条数据
+                </div>
+                <button class="btn-search btn btn-large btn-block btn-primary" type="button" disabled>请先选择关键词</button>
+            </div>
+        </div>
+    </div>
+    <!-- Model begin -->
+    <!-- Why -->
+    <div id="modal_why" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4>为什么做这个应用</h4>
+        </div>
+        <div class="modal-body">
+        <p>几个月前在豆瓣找房的经历是痛苦的，因为我只想找知春路或者西土城一代的房子，但是豆瓣的小组不提供关键字搜索和按发帖时间排序排序。于是加了四个小组的我每天不得不面对海量的信息，而且这四个租房小组帖子的刷新频率非常高。你必须不停地刷新页面才能获得最新的信息。</p>
+        <p>这个工具解决了</p>
+        <ul>
+            <li>根据关键字搜索</li>
+            <li>把搜索结果按发帖时间（而不是回复）排序</li>
+        </ul>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">确定</button>
+        </div>
+    </div>    
+
+
+    <!-- How -->
+    <div id="modal_how" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4>如何使用</h4>
+        </div>
+        <div class="modal-body">
+        <p>很简单</p>
+        <ol>
+            <li>在下面的不同分类的标签中选择你需要的关键字，随后会出现在右侧。</li>
+            <li>至少添加了一个关键字后（最多选择10个），点击搜索</li>
+        </ol>
+        <p><strong>注意事项：</strong></p>
+        <ul>
+            <li>数据每十分钟更新一次</li>
+            <li>目前只抓取四个租房小组。四个小组分别是：</li>
+            <li>
+                <ul>
+                    <li><a href="http://www.douban.com/group/beijingzufang/discussion" target="_blank">北京租房小组</a></li>
+                    <li><a href="http://www.douban.com/group/fangzi/discussion" target="_blank">豆瓣租房小组</a></li>
+                    <li><a href="http://www.douban.com/group/262626/discussion" target="_blank">北京无中介租房小组</a></li>
+                    <li><a href="http://www.douban.com/group/276176/discussion" target="_blank">北京出租房</a></li>
+
+                    <li><a href="http://www.douban.com/group/26926/discussion" target="_blank">北京租房豆瓣</a></li>
+                    <li><a href="http://www.douban.com/group/sweethome/discussion" target="_blank">北京租房（密探）</a></li>
+                    <li><a href="http://www.douban.com/group/242806/discussion" target="_blank">北京租房！找伴儿一起住一个房间！</a></li>
+                    <li><a href="http://www.douban.com/group/257523/discussion" target="_blank">北京租房房东联盟(中介勿扰) </a></li>                    
+
+                    <li><a href="http://www.douban.com/group/279962/discussion" target="_blank">北京租房（非中介）</a></li>
+                    <li><a href="http://www.douban.com/group/334449/discussion" target="_blank">北京租房合租房</a></li>   
+                </ul>
+            </li>
+            <li>因为部署平台原因，理想状态下应该有997条数据（每个小组的前十页），但很可能总是在几百条徘徊</li>
+            <li>因为部署平台原因，可能网页会有不能打开情况，请多刷新几次</li>
+            <li>如果有条件的同学可以部署在本机上，这样可自控时间间隔和数据条数，详见<a href="https://github.com/hh54188/scrapy_douban" target="_blank">技术参考</a></li>
+        </ul>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">确定</button>
+        </div>
+    </div>
+
+    <!-- advice -->
+    <div id="modal_advice" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4>意见和建议</h4>
+        </div>
+        <div class="modal-body">
+        <p>如果你觉得</p>
+        <ul>
+            <li>没有你需要的关键字</li>
+            <li>不好用的地方</li>
+            <li>有好的提议</li>
+            <li>总是出错</li>
+        </ul>
+        <p>可以邮件我 juststayinvegas#gmail.com, 把#换成@</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">确定</button>
+        </div>
+    </div> 
+
+    <!-- 搜索结果 -->
+    <div id="model_search" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4>搜索结果</h4>
+        </div>
+        <div class="modal-body">
+            <ul class="smodel_search-list"></ul>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">确定</button>
+        </div>
+    </div>     
+</body>
+<script type="text/javascript" src="{{ url_for('static', filename='build/js/script.min.js') }}"></script>
+<!-- google统计代码 -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38061225-3', 'herokuapp.com');
+  ga('send', 'pageview');
+
+</script>
+</html>
