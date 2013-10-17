@@ -25,7 +25,7 @@ var pageRequest = function (res, url) {
     request({
         uri: url,
     }, function(error, response, body) {
-        
+
         if (error) {
             COMPLETE_FLAG--;
             return;
