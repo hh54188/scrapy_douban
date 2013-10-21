@@ -1,5 +1,6 @@
 var request = require("request");
 var cheerio = require("cheerio");
+var db = require("./db");
 
 var FETCH_URLS = [
     // "http://www.douban.com/group/beijingzufang/discussion",
@@ -17,6 +18,8 @@ var FETCH_URLS = [
 var FETCH_PAGE_NUM = 2;
 var COMPLETE_FLAG = 0;
 var RES = {};
+
+db.connectToDB(db.init);
 
 var pageRequest = function (res, url) {
 
@@ -40,13 +43,12 @@ var pageRequest = function (res, url) {
             var id = href.split('/')[5];
 
             RES[id] = href;
-            console.log(id);
         });
 
         COMPLETE_FLAG--;
 
         if (!COMPLETE_FLAG) {
-            res.send(RES);
+            // TODO
         }
     });
 };

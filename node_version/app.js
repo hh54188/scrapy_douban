@@ -4,7 +4,7 @@ var express = require('express'),
 
 // Route
 var home = require("./routes/home"),
-    data=  require("./routes/data")
+    spider = require("./routes/spider");
 
 var app = express();
 
@@ -21,9 +21,9 @@ app.use(app.router);
 app.use(express.static(__dirname + "/media"));
 
 
-// Route bEgin
+// Route Begin
 app.get('/', home.index);
 
-app.get("/fetch", data.fetch);
+spider.fetch();
 
 app.listen(process.env.VCAP_APP_PORT || 8000);
