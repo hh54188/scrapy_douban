@@ -22,21 +22,21 @@ exports.init = function () {
         id: Number
     });
 
-    ItemModel = mongoose.model("Item", ItemSchema);
+    ItemModel = mongoose.model("MasterHouse", ItemSchema);
 
-    console.log("Item init complete!");
+    console.log("Master init complete!");
 
-    var item = new ItemModel({
-        url: "test_url",
-        title: "test_title",
-        id: 110
-    }).save(function (err) {
-        if (err) {
-            console.log("Error!", err);
-        }
+    // var item = new ItemModel({
+    //     url: "test_url",
+    //     title: "test_title",
+    //     id: 110
+    // }).save(function (err) {
+    //     if (err) {
+    //         console.log("Error!", err);
+    //     }
 
-        console.log("complete!");
-    });
+    //     console.log("Item save complete!");
+    // });
 };
 
 

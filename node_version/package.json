@@ -8,7 +8,8 @@
     "express": "~3.4.0",
     "mongoose": "~3.6.20",
     "cheerio": "~0.12.3",
-    "request": "~2.27.0"
+    "request": "~2.27.0",
+    "redis": "~0.9.0"
   },
   "devDependencies": {},
   "scripts": {

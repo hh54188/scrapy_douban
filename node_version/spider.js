@@ -1,7 +1,6 @@
 var request = require("request");
 var cheerio = require("cheerio");
 var db = require("./db");
-var red = require("./redis");
 
 var FETCH_URLS = [
     // "http://www.douban.com/group/beijingzufang/discussion",

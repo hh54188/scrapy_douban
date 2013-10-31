@@ -1,0 +1,510 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'c:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'hiredis',
+1 verbose cli   '--save' ]
+2 info using npm@1.2.18
+3 info using node@v0.10.5
+4 verbose read json c:\Users\QIYI\Desktop\scrapy_douban\node_version\package.json
+5 warn package.json node_version@0.0.0 No README.md file found!
+6 verbose read json c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\cheerio\package.json
+7 verbose read json c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\ejs\package.json
+8 verbose read json c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\express\package.json
+9 verbose read json c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\jquery\package.json
+10 verbose read json c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\mongoose\package.json
+11 verbose read json c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\redis\package.json
+12 verbose read json c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\request\package.json
+13 verbose from cache c:\Users\QIYI\Desktop\scrapy_douban\node_version\package.json
+14 verbose readDependencies using package.json deps
+15 verbose cache add [ 'hiredis', null ]
+16 verbose cache add name=undefined spec="hiredis" args=["hiredis",null]
+17 verbose parsed url { protocol: null,
+17 verbose parsed url   slashes: null,
+17 verbose parsed url   auth: null,
+17 verbose parsed url   host: null,
+17 verbose parsed url   port: null,
+17 verbose parsed url   hostname: null,
+17 verbose parsed url   hash: null,
+17 verbose parsed url   search: null,
+17 verbose parsed url   query: null,
+17 verbose parsed url   pathname: 'hiredis',
+17 verbose parsed url   path: 'hiredis',
+17 verbose parsed url   href: 'hiredis' }
+18 silly lockFile 66e3de35-hiredis hiredis
+19 verbose lock hiredis C:\Users\QIYI\AppData\Roaming\npm-cache\66e3de35-hiredis.lock
+20 silly lockFile 66e3de35-hiredis hiredis
+21 silly lockFile 66e3de35-hiredis hiredis
+22 verbose addNamed [ 'hiredis', '' ]
+23 verbose addNamed [ null, '' ]
+24 silly lockFile dc014615-hiredis hiredis@
+25 verbose lock hiredis@ C:\Users\QIYI\AppData\Roaming\npm-cache\dc014615-hiredis.lock
+26 silly addNameRange { name: 'hiredis', range: '', hasData: false }
+27 verbose url raw hiredis
+28 verbose url resolving [ 'https://registry.npmjs.org/', './hiredis' ]
+29 verbose url resolved https://registry.npmjs.org/hiredis
+30 info trying registry request attempt 1 at 16:47:27
+31 http GET https://registry.npmjs.org/hiredis
+32 http 200 https://registry.npmjs.org/hiredis
+33 silly registry.get cb [ 200,
+33 silly registry.get   { vary: 'Accept',
+33 silly registry.get     server: 'CouchDB/1.3.1 (Erlang OTP/R15B03)',
+33 silly registry.get     etag: '"5PUZHL6JCPPFTUZOAVINN8INC"',
+33 silly registry.get     date: 'Wed, 30 Oct 2013 08:47:25 GMT',
+33 silly registry.get     'content-type': 'application/json',
+33 silly registry.get     'content-length': '14286' } ]
+34 silly addNameRange number 2 { name: 'hiredis', range: '', hasData: true }
+35 silly addNameRange versions [ 'hiredis',
+35 silly addNameRange   [ '0.1.0',
+35 silly addNameRange     '0.1.1',
+35 silly addNameRange     '0.1.2',
+35 silly addNameRange     '0.1.3',
+35 silly addNameRange     '0.1.4',
+35 silly addNameRange     '0.1.5',
+35 silly addNameRange     '0.1.6',
+35 silly addNameRange     '0.1.8',
+35 silly addNameRange     '0.1.9',
+35 silly addNameRange     '0.1.10',
+35 silly addNameRange     '0.1.12',
+35 silly addNameRange     '0.1.13',
+35 silly addNameRange     '0.1.14',
+35 silly addNameRange     '0.1.15' ] ]
+36 verbose addNamed [ 'hiredis', '0.1.15' ]
+37 verbose addNamed [ '0.1.15', '0.1.15' ]
+38 silly lockFile 7ce4b3b8-hiredis-0-1-15 hiredis@0.1.15
+39 verbose lock hiredis@0.1.15 C:\Users\QIYI\AppData\Roaming\npm-cache\7ce4b3b8-hiredis-0-1-15.lock
+40 silly lockFile c46fd54b-s-org-hiredis-hiredis-0-1-15-tgz https://registry.npmjs.org/hiredis/-/hiredis-0.1.15.tgz
+41 verbose lock https://registry.npmjs.org/hiredis/-/hiredis-0.1.15.tgz C:\Users\QIYI\AppData\Roaming\npm-cache\c46fd54b-s-org-hiredis-hiredis-0-1-15-tgz.lock
+42 verbose addRemoteTarball [ 'https://registry.npmjs.org/hiredis/-/hiredis-0.1.15.tgz',
+42 verbose addRemoteTarball   '00eb2205c85dcf50de838203e513896dc304dd49' ]
+43 info retry fetch attempt 1 at 16:47:29
+44 verbose fetch to= C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\tmp.tgz
+45 http GET https://registry.npmjs.org/hiredis/-/hiredis-0.1.15.tgz
+46 http 200 https://registry.npmjs.org/hiredis/-/hiredis-0.1.15.tgz
+47 silly shasum updated bytes 47431
+48 info shasum 00eb2205c85dcf50de838203e513896dc304dd49
+48 info shasum C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\tmp.tgz
+49 verbose tar unpack C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\tmp.tgz
+50 silly lockFile c67adfe8-49396-0-9315276956185699-package C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\package
+51 verbose lock C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\package C:\Users\QIYI\AppData\Roaming\npm-cache\c67adfe8-49396-0-9315276956185699-package.lock
+52 silly lockFile 3a8537f3-49396-0-9315276956185699-tmp-tgz C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\tmp.tgz
+53 verbose lock C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\tmp.tgz C:\Users\QIYI\AppData\Roaming\npm-cache\3a8537f3-49396-0-9315276956185699-tmp-tgz.lock
+54 silly gunzTarPerm modes [ '755', '644' ]
+55 silly gunzTarPerm extractEntry package.json
+56 silly gunzTarPerm extractEntry README.md
+57 silly gunzTarPerm extractEntry bench.js
+58 silly gunzTarPerm extractEntry hiredis.js
+59 silly gunzTarPerm extractEntry binding.gyp
+60 silly gunzTarPerm extractEntry COPYING
+61 silly gunzTarPerm extractEntry deps/hiredis/README.md
+62 silly gunzTarPerm extractEntry deps/hiredis/example.c
+63 silly gunzTarPerm extractEntry deps/hiredis/async.h
+64 silly gunzTarPerm extractEntry deps/hiredis/CHANGELOG.md
+65 silly gunzTarPerm extractEntry deps/hiredis/COPYING
+66 silly gunzTarPerm extractEntry deps/hiredis/dict.c
+67 silly gunzTarPerm extractEntry deps/hiredis/dict.h
+68 silly gunzTarPerm extractEntry deps/hiredis/example-ae.c
+69 silly gunzTarPerm extractEntry deps/hiredis/example-libev.c
+70 silly gunzTarPerm extractEntry deps/hiredis/example-libevent.c
+71 silly gunzTarPerm extractEntry deps/hiredis/async.c
+72 silly gunzTarPerm extractEntry deps/hiredis/fmacros.h
+73 silly gunzTarPerm extractEntry deps/hiredis/hiredis.c
+74 silly gunzTarPerm extractEntry deps/hiredis/hiredis.h
+75 silly gunzTarPerm extractEntry deps/hiredis/Makefile
+76 silly gunzTarPerm extractEntry deps/hiredis/net.c
+77 silly gunzTarPerm extractEntry deps/hiredis/net.h
+78 silly gunzTarPerm extractEntry deps/hiredis/adapters/ae.h
+79 silly gunzTarPerm extractEntry deps/hiredis/adapters/libev.h
+80 silly gunzTarPerm extractEntry deps/hiredis/adapters/libevent.h
+81 silly gunzTarPerm extractEntry deps/hiredis/sds.c
+82 silly gunzTarPerm extractEntry deps/hiredis/sds.h
+83 silly gunzTarPerm extractEntry deps/hiredis/test.c
+84 silly gunzTarPerm extractEntry deps/hiredis.gyp
+85 silly gunzTarPerm extractEntry src/hiredis.cc
+86 silly gunzTarPerm extractEntry src/reader.cc
+87 silly gunzTarPerm extractEntry src/reader.h
+88 silly gunzTarPerm extractEntry test/reader.js
+89 verbose read json C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\package\package.json
+90 silly lockFile c67adfe8-49396-0-9315276956185699-package C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\package
+91 silly lockFile c67adfe8-49396-0-9315276956185699-package C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\package
+92 silly lockFile 3a8537f3-49396-0-9315276956185699-tmp-tgz C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\tmp.tgz
+93 silly lockFile 3a8537f3-49396-0-9315276956185699-tmp-tgz C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\tmp.tgz
+94 verbose from cache C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\package\package.json
+95 verbose tar pack [ 'C:\\Users\\QIYI\\AppData\\Roaming\\npm-cache\\hiredis\\0.1.15\\package.tgz',
+95 verbose tar pack   'C:\\Users\\QIYI\\AppData\\Local\\Temp\\npm-2568\\1383122849396-0.9315276956185699\\package' ]
+96 verbose tarball C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz
+97 verbose folder C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\package
+98 silly lockFile c67adfe8-49396-0-9315276956185699-package C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\package
+99 verbose lock C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\package C:\Users\QIYI\AppData\Roaming\npm-cache\c67adfe8-49396-0-9315276956185699-package.lock
+100 silly lockFile b92ee109-cache-hiredis-0-1-15-package-tgz C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz
+101 verbose lock C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz C:\Users\QIYI\AppData\Roaming\npm-cache\b92ee109-cache-hiredis-0-1-15-package-tgz.lock
+102 silly lockFile c67adfe8-49396-0-9315276956185699-package C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\package
+103 silly lockFile c67adfe8-49396-0-9315276956185699-package C:\Users\QIYI\AppData\Local\Temp\npm-2568\1383122849396-0.9315276956185699\package
+104 silly lockFile b92ee109-cache-hiredis-0-1-15-package-tgz C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz
+105 silly lockFile b92ee109-cache-hiredis-0-1-15-package-tgz C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz
+106 silly lockFile 416973e7-npm-cache-hiredis-0-1-15-package C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package
+107 verbose lock C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package C:\Users\QIYI\AppData\Roaming\npm-cache\416973e7-npm-cache-hiredis-0-1-15-package.lock
+108 silly lockFile 416973e7-npm-cache-hiredis-0-1-15-package C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package
+109 silly lockFile 416973e7-npm-cache-hiredis-0-1-15-package C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package
+110 verbose tar unpack C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz
+111 silly lockFile 416973e7-npm-cache-hiredis-0-1-15-package C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package
+112 verbose lock C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package C:\Users\QIYI\AppData\Roaming\npm-cache\416973e7-npm-cache-hiredis-0-1-15-package.lock
+113 silly lockFile b92ee109-cache-hiredis-0-1-15-package-tgz C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz
+114 verbose lock C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz C:\Users\QIYI\AppData\Roaming\npm-cache\b92ee109-cache-hiredis-0-1-15-package-tgz.lock
+115 silly gunzTarPerm modes [ '755', '644' ]
+116 silly gunzTarPerm extractEntry package.json
+117 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+118 silly gunzTarPerm extractEntry README.md
+119 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+120 silly gunzTarPerm extractEntry bench.js
+121 silly gunzTarPerm modified mode [ 'bench.js', 438, 420 ]
+122 silly gunzTarPerm extractEntry hiredis.js
+123 silly gunzTarPerm modified mode [ 'hiredis.js', 438, 420 ]
+124 silly gunzTarPerm extractEntry binding.gyp
+125 silly gunzTarPerm modified mode [ 'binding.gyp', 438, 420 ]
+126 silly gunzTarPerm extractEntry COPYING
+127 silly gunzTarPerm modified mode [ 'COPYING', 438, 420 ]
+128 silly gunzTarPerm extractEntry deps/hiredis/README.md
+129 silly gunzTarPerm modified mode [ 'deps/hiredis/README.md', 438, 420 ]
+130 silly gunzTarPerm extractEntry deps/hiredis/example.c
+131 silly gunzTarPerm modified mode [ 'deps/hiredis/example.c', 438, 420 ]
+132 silly gunzTarPerm extractEntry deps/hiredis/async.h
+133 silly gunzTarPerm modified mode [ 'deps/hiredis/async.h', 438, 420 ]
+134 silly gunzTarPerm extractEntry deps/hiredis/CHANGELOG.md
+135 silly gunzTarPerm modified mode [ 'deps/hiredis/CHANGELOG.md', 438, 420 ]
+136 silly gunzTarPerm extractEntry deps/hiredis/COPYING
+137 silly gunzTarPerm modified mode [ 'deps/hiredis/COPYING', 438, 420 ]
+138 silly gunzTarPerm extractEntry deps/hiredis/dict.c
+139 silly gunzTarPerm modified mode [ 'deps/hiredis/dict.c', 438, 420 ]
+140 silly gunzTarPerm extractEntry deps/hiredis/dict.h
+141 silly gunzTarPerm modified mode [ 'deps/hiredis/dict.h', 438, 420 ]
+142 silly gunzTarPerm extractEntry deps/hiredis/example-ae.c
+143 silly gunzTarPerm modified mode [ 'deps/hiredis/example-ae.c', 438, 420 ]
+144 silly gunzTarPerm extractEntry deps/hiredis/example-libev.c
+145 silly gunzTarPerm modified mode [ 'deps/hiredis/example-libev.c', 438, 420 ]
+146 silly gunzTarPerm extractEntry deps/hiredis/example-libevent.c
+147 silly gunzTarPerm modified mode [ 'deps/hiredis/example-libevent.c', 438, 420 ]
+148 silly gunzTarPerm extractEntry deps/hiredis/async.c
+149 silly gunzTarPerm modified mode [ 'deps/hiredis/async.c', 438, 420 ]
+150 silly gunzTarPerm extractEntry deps/hiredis/fmacros.h
+151 silly gunzTarPerm modified mode [ 'deps/hiredis/fmacros.h', 438, 420 ]
+152 silly gunzTarPerm extractEntry deps/hiredis/hiredis.c
+153 silly gunzTarPerm modified mode [ 'deps/hiredis/hiredis.c', 438, 420 ]
+154 silly gunzTarPerm extractEntry deps/hiredis/hiredis.h
+155 silly gunzTarPerm modified mode [ 'deps/hiredis/hiredis.h', 438, 420 ]
+156 silly gunzTarPerm extractEntry deps/hiredis/Makefile
+157 silly gunzTarPerm modified mode [ 'deps/hiredis/Makefile', 438, 420 ]
+158 silly gunzTarPerm extractEntry deps/hiredis/net.c
+159 silly gunzTarPerm modified mode [ 'deps/hiredis/net.c', 438, 420 ]
+160 silly gunzTarPerm extractEntry deps/hiredis/net.h
+161 silly gunzTarPerm modified mode [ 'deps/hiredis/net.h', 438, 420 ]
+162 silly gunzTarPerm extractEntry deps/hiredis/adapters/ae.h
+163 silly gunzTarPerm modified mode [ 'deps/hiredis/adapters/ae.h', 438, 420 ]
+164 silly gunzTarPerm extractEntry deps/hiredis/adapters/libev.h
+165 silly gunzTarPerm modified mode [ 'deps/hiredis/adapters/libev.h', 438, 420 ]
+166 silly gunzTarPerm extractEntry deps/hiredis/adapters/libevent.h
+167 silly gunzTarPerm modified mode [ 'deps/hiredis/adapters/libevent.h', 438, 420 ]
+168 silly gunzTarPerm extractEntry deps/hiredis/sds.c
+169 silly gunzTarPerm modified mode [ 'deps/hiredis/sds.c', 438, 420 ]
+170 silly gunzTarPerm extractEntry deps/hiredis/sds.h
+171 silly gunzTarPerm modified mode [ 'deps/hiredis/sds.h', 438, 420 ]
+172 silly gunzTarPerm extractEntry deps/hiredis/test.c
+173 silly gunzTarPerm modified mode [ 'deps/hiredis/test.c', 438, 420 ]
+174 silly gunzTarPerm extractEntry deps/hiredis.gyp
+175 silly gunzTarPerm modified mode [ 'deps/hiredis.gyp', 438, 420 ]
+176 silly gunzTarPerm extractEntry src/hiredis.cc
+177 silly gunzTarPerm modified mode [ 'src/hiredis.cc', 438, 420 ]
+178 silly gunzTarPerm extractEntry src/reader.cc
+179 silly gunzTarPerm modified mode [ 'src/reader.cc', 438, 420 ]
+180 silly gunzTarPerm extractEntry src/reader.h
+181 silly gunzTarPerm modified mode [ 'src/reader.h', 438, 420 ]
+182 silly gunzTarPerm extractEntry test/reader.js
+183 silly gunzTarPerm modified mode [ 'test/reader.js', 438, 420 ]
+184 verbose read json C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package\package.json
+185 silly lockFile 416973e7-npm-cache-hiredis-0-1-15-package C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package
+186 silly lockFile 416973e7-npm-cache-hiredis-0-1-15-package C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package
+187 silly lockFile b92ee109-cache-hiredis-0-1-15-package-tgz C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz
+188 silly lockFile b92ee109-cache-hiredis-0-1-15-package-tgz C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz
+189 silly shasum updated bytes 47410
+190 info shasum 04ac2955fbc4b3032f3445682adb72b67469f73f
+190 info shasum C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz
+191 verbose from cache C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package\package.json
+192 verbose chmod C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz 644
+193 silly chown skipping for windows C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz
+194 silly lockFile c46fd54b-s-org-hiredis-hiredis-0-1-15-tgz https://registry.npmjs.org/hiredis/-/hiredis-0.1.15.tgz
+195 silly lockFile c46fd54b-s-org-hiredis-hiredis-0-1-15-tgz https://registry.npmjs.org/hiredis/-/hiredis-0.1.15.tgz
+196 silly lockFile 7ce4b3b8-hiredis-0-1-15 hiredis@0.1.15
+197 silly lockFile 7ce4b3b8-hiredis-0-1-15 hiredis@0.1.15
+198 silly lockFile dc014615-hiredis hiredis@
+199 silly lockFile dc014615-hiredis hiredis@
+200 silly resolved [ { name: 'hiredis',
+200 silly resolved     description: 'Wrapper for reply processing code in hiredis',
+200 silly resolved     version: '0.1.15',
+200 silly resolved     homepage: 'http://github.com/pietern/hiredis-node',
+200 silly resolved     author: { name: 'Pieter Noordhuis', email: 'pcnoordhuis@gmail.com' },
+200 silly resolved     main: 'hiredis',
+200 silly resolved     scripts: { test: 'node test/reader.js', install: 'node-gyp rebuild' },
+200 silly resolved     dependencies: { bindings: '*' },
+200 silly resolved     engines: { node: '>= 0.6.0' },
+200 silly resolved     gypfile: true,
+200 silly resolved     readme: '# hiredis-node\n\nNode extension that wraps [hiredis][hiredis].\nBecause Node is already good at doing I/O, hiredis-node only provides\nbindings to the protocol parser.\nThe hiredis protocol parser is faster than JavaScript protocol parsers,\nbut the speedup only becomes noticable for large replies.\nIf you use Redis for simple SET/GET operations, there won\'t be a big\nbenefit to using hiredis.\nIf you use Redis for big SUNION/SINTER/LRANGE/ZRANGE operations, the\nbenefit to using hiredis-node can be significant.\n\n[hiredis]: http://github.com/antirez/hiredis\n\n## Install\n\nInstall with [NPM][npm]:\n\n```\nnpm install hiredis\n```\n\n[npm]: https://npmjs.org/\n\n## Usage\n\nhiredis-node works out of the box with Matt Ranney\'s [node_redis][node_redis].\nThe latter has an optional dependency on hiredis-node, so maybe you\'re\nalready using it without knowing.\n\nAlternatively, you can use it directly:\n\n```javascript\nvar hiredis = require("hiredis"),\n    reader = new hiredis.Reader();\n\n// Data comes in\nreader.feed("$5\\r\\nhello\\r\\n");\n\n// Reply comes out\nreader.get() // => "hello"\n```\n\nInstead of returning strings for bulk payloads, it can also return\nbuffers:\n\n```javascript\nvar hiredis = require("hiredis"),\n    reader = new hiredis.Reader({ return_buffers: true });\n\n// Data comes in\nreader.feed("$5\\r\\nhello\\r\\n");\n\n// Reply comes out\nreader.get() // => <Buffer 68 65 6c 6c 6f>\n```\n\n[node_redis]: http://github.com/mranney/node_redis\n\n## License\n\nThis code is released under the BSD license, after the license of hiredis.\n',
+200 silly resolved     readmeFilename: 'README.md',
+200 silly resolved     _id: 'hiredis@0.1.15',
+200 silly resolved     dist: { shasum: '04ac2955fbc4b3032f3445682adb72b67469f73f' },
+200 silly resolved     _from: 'hiredis@',
+200 silly resolved     _resolved: 'https://registry.npmjs.org/hiredis/-/hiredis-0.1.15.tgz' } ]
+201 info install hiredis@0.1.15 into c:\Users\QIYI\Desktop\scrapy_douban\node_version
+202 info installOne hiredis@0.1.15
+203 verbose from cache C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package\package.json
+204 info c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis unbuild
+205 verbose read json c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\package.json
+206 verbose tar unpack C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz
+207 silly lockFile 0bebc23e-ode-version-node-modules-hiredis c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis
+208 verbose lock c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis C:\Users\QIYI\AppData\Roaming\npm-cache\0bebc23e-ode-version-node-modules-hiredis.lock
+209 silly lockFile b92ee109-cache-hiredis-0-1-15-package-tgz C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz
+210 verbose lock C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz C:\Users\QIYI\AppData\Roaming\npm-cache\b92ee109-cache-hiredis-0-1-15-package-tgz.lock
+211 silly gunzTarPerm modes [ '755', '644' ]
+212 silly gunzTarPerm extractEntry package.json
+213 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+214 silly gunzTarPerm extractEntry README.md
+215 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+216 silly gunzTarPerm extractEntry bench.js
+217 silly gunzTarPerm modified mode [ 'bench.js', 438, 420 ]
+218 silly gunzTarPerm extractEntry hiredis.js
+219 silly gunzTarPerm modified mode [ 'hiredis.js', 438, 420 ]
+220 silly gunzTarPerm extractEntry binding.gyp
+221 silly gunzTarPerm modified mode [ 'binding.gyp', 438, 420 ]
+222 silly gunzTarPerm extractEntry COPYING
+223 silly gunzTarPerm modified mode [ 'COPYING', 438, 420 ]
+224 silly gunzTarPerm extractEntry deps/hiredis/README.md
+225 silly gunzTarPerm modified mode [ 'deps/hiredis/README.md', 438, 420 ]
+226 silly gunzTarPerm extractEntry deps/hiredis/example.c
+227 silly gunzTarPerm modified mode [ 'deps/hiredis/example.c', 438, 420 ]
+228 silly gunzTarPerm extractEntry deps/hiredis/async.h
+229 silly gunzTarPerm modified mode [ 'deps/hiredis/async.h', 438, 420 ]
+230 silly gunzTarPerm extractEntry deps/hiredis/CHANGELOG.md
+231 silly gunzTarPerm modified mode [ 'deps/hiredis/CHANGELOG.md', 438, 420 ]
+232 silly gunzTarPerm extractEntry deps/hiredis/COPYING
+233 silly gunzTarPerm modified mode [ 'deps/hiredis/COPYING', 438, 420 ]
+234 silly gunzTarPerm extractEntry deps/hiredis/dict.c
+235 silly gunzTarPerm modified mode [ 'deps/hiredis/dict.c', 438, 420 ]
+236 silly gunzTarPerm extractEntry deps/hiredis/dict.h
+237 silly gunzTarPerm modified mode [ 'deps/hiredis/dict.h', 438, 420 ]
+238 silly gunzTarPerm extractEntry deps/hiredis/example-ae.c
+239 silly gunzTarPerm modified mode [ 'deps/hiredis/example-ae.c', 438, 420 ]
+240 silly gunzTarPerm extractEntry deps/hiredis/example-libev.c
+241 silly gunzTarPerm modified mode [ 'deps/hiredis/example-libev.c', 438, 420 ]
+242 silly gunzTarPerm extractEntry deps/hiredis/example-libevent.c
+243 silly gunzTarPerm modified mode [ 'deps/hiredis/example-libevent.c', 438, 420 ]
+244 silly gunzTarPerm extractEntry deps/hiredis/async.c
+245 silly gunzTarPerm modified mode [ 'deps/hiredis/async.c', 438, 420 ]
+246 silly gunzTarPerm extractEntry deps/hiredis/fmacros.h
+247 silly gunzTarPerm modified mode [ 'deps/hiredis/fmacros.h', 438, 420 ]
+248 silly gunzTarPerm extractEntry deps/hiredis/hiredis.c
+249 silly gunzTarPerm modified mode [ 'deps/hiredis/hiredis.c', 438, 420 ]
+250 silly gunzTarPerm extractEntry deps/hiredis/hiredis.h
+251 silly gunzTarPerm modified mode [ 'deps/hiredis/hiredis.h', 438, 420 ]
+252 silly gunzTarPerm extractEntry deps/hiredis/Makefile
+253 silly gunzTarPerm modified mode [ 'deps/hiredis/Makefile', 438, 420 ]
+254 silly gunzTarPerm extractEntry deps/hiredis/net.c
+255 silly gunzTarPerm modified mode [ 'deps/hiredis/net.c', 438, 420 ]
+256 silly gunzTarPerm extractEntry deps/hiredis/net.h
+257 silly gunzTarPerm modified mode [ 'deps/hiredis/net.h', 438, 420 ]
+258 silly gunzTarPerm extractEntry deps/hiredis/adapters/ae.h
+259 silly gunzTarPerm modified mode [ 'deps/hiredis/adapters/ae.h', 438, 420 ]
+260 silly gunzTarPerm extractEntry deps/hiredis/adapters/libev.h
+261 silly gunzTarPerm modified mode [ 'deps/hiredis/adapters/libev.h', 438, 420 ]
+262 silly gunzTarPerm extractEntry deps/hiredis/adapters/libevent.h
+263 silly gunzTarPerm modified mode [ 'deps/hiredis/adapters/libevent.h', 438, 420 ]
+264 silly gunzTarPerm extractEntry deps/hiredis/sds.c
+265 silly gunzTarPerm modified mode [ 'deps/hiredis/sds.c', 438, 420 ]
+266 silly gunzTarPerm extractEntry deps/hiredis/sds.h
+267 silly gunzTarPerm modified mode [ 'deps/hiredis/sds.h', 438, 420 ]
+268 silly gunzTarPerm extractEntry deps/hiredis/test.c
+269 silly gunzTarPerm modified mode [ 'deps/hiredis/test.c', 438, 420 ]
+270 silly gunzTarPerm extractEntry deps/hiredis.gyp
+271 silly gunzTarPerm modified mode [ 'deps/hiredis.gyp', 438, 420 ]
+272 silly gunzTarPerm extractEntry src/hiredis.cc
+273 silly gunzTarPerm modified mode [ 'src/hiredis.cc', 438, 420 ]
+274 silly gunzTarPerm extractEntry src/reader.cc
+275 silly gunzTarPerm modified mode [ 'src/reader.cc', 438, 420 ]
+276 silly gunzTarPerm extractEntry src/reader.h
+277 silly gunzTarPerm modified mode [ 'src/reader.h', 438, 420 ]
+278 silly gunzTarPerm extractEntry test/reader.js
+279 silly gunzTarPerm modified mode [ 'test/reader.js', 438, 420 ]
+280 verbose read json c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\package.json
+281 silly lockFile 0bebc23e-ode-version-node-modules-hiredis c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis
+282 silly lockFile 0bebc23e-ode-version-node-modules-hiredis c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis
+283 silly lockFile b92ee109-cache-hiredis-0-1-15-package-tgz C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz
+284 silly lockFile b92ee109-cache-hiredis-0-1-15-package-tgz C:\Users\QIYI\AppData\Roaming\npm-cache\hiredis\0.1.15\package.tgz
+285 info preinstall hiredis@0.1.15
+286 verbose from cache c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\package.json
+287 verbose readDependencies using package.json deps
+288 verbose from cache c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\package.json
+289 verbose readDependencies using package.json deps
+290 verbose cache add [ 'bindings@*', null ]
+291 verbose cache add name=undefined spec="bindings@*" args=["bindings@*",null]
+292 verbose parsed url { protocol: null,
+292 verbose parsed url   slashes: null,
+292 verbose parsed url   auth: null,
+292 verbose parsed url   host: null,
+292 verbose parsed url   port: null,
+292 verbose parsed url   hostname: null,
+292 verbose parsed url   hash: null,
+292 verbose parsed url   search: null,
+292 verbose parsed url   query: null,
+292 verbose parsed url   pathname: 'bindings@*',
+292 verbose parsed url   path: 'bindings@*',
+292 verbose parsed url   href: 'bindings@*' }
+293 verbose cache add name="bindings" spec="*" args=["bindings","*"]
+294 verbose parsed url { protocol: null,
+294 verbose parsed url   slashes: null,
+294 verbose parsed url   auth: null,
+294 verbose parsed url   host: null,
+294 verbose parsed url   port: null,
+294 verbose parsed url   hostname: null,
+294 verbose parsed url   hash: null,
+294 verbose parsed url   search: null,
+294 verbose parsed url   query: null,
+294 verbose parsed url   pathname: '*',
+294 verbose parsed url   path: '*',
+294 verbose parsed url   href: '*' }
+295 verbose addNamed [ 'bindings', '*' ]
+296 verbose addNamed [ null, '' ]
+297 silly lockFile a3858fc2-bindings bindings@*
+298 verbose lock bindings@* C:\Users\QIYI\AppData\Roaming\npm-cache\a3858fc2-bindings.lock
+299 silly addNameRange { name: 'bindings', range: '', hasData: false }
+300 verbose url raw bindings
+301 verbose url resolving [ 'https://registry.npmjs.org/', './bindings' ]
+302 verbose url resolved https://registry.npmjs.org/bindings
+303 info trying registry request attempt 1 at 16:47:32
+304 verbose etag "7T3K5G7IPKYYUOD04UHNCJDA6"
+305 http GET https://registry.npmjs.org/bindings
+306 http 304 https://registry.npmjs.org/bindings
+307 silly registry.get cb [ 304,
+307 silly registry.get   { server: 'CouchDB/1.3.1 (Erlang OTP/R15B03)',
+307 silly registry.get     etag: '"7T3K5G7IPKYYUOD04UHNCJDA6"',
+307 silly registry.get     date: 'Wed, 30 Oct 2013 08:47:30 GMT',
+307 silly registry.get     'content-length': '0' } ]
+308 verbose etag bindings from cache
+309 silly addNameRange number 2 { name: 'bindings', range: '', hasData: true }
+310 silly addNameRange versions [ 'bindings',
+310 silly addNameRange   [ '0.0.1',
+310 silly addNameRange     '0.1.0',
+310 silly addNameRange     '0.1.1',
+310 silly addNameRange     '0.2.0',
+310 silly addNameRange     '0.2.1',
+310 silly addNameRange     '0.2.2',
+310 silly addNameRange     '0.2.3',
+310 silly addNameRange     '0.2.4',
+310 silly addNameRange     '0.3.0',
+310 silly addNameRange     '0.4.0',
+310 silly addNameRange     '1.0.0',
+310 silly addNameRange     '1.1.0',
+310 silly addNameRange     '1.1.1' ] ]
+311 verbose addNamed [ 'bindings', '1.1.1' ]
+312 verbose addNamed [ '1.1.1', '1.1.1' ]
+313 silly lockFile 52dd60a7-bindings-1-1-1 bindings@1.1.1
+314 verbose lock bindings@1.1.1 C:\Users\QIYI\AppData\Roaming\npm-cache\52dd60a7-bindings-1-1-1.lock
+315 verbose read json C:\Users\QIYI\AppData\Roaming\npm-cache\bindings\1.1.1\package\package.json
+316 silly lockFile 52dd60a7-bindings-1-1-1 bindings@1.1.1
+317 silly lockFile 52dd60a7-bindings-1-1-1 bindings@1.1.1
+318 silly lockFile a3858fc2-bindings bindings@*
+319 silly lockFile a3858fc2-bindings bindings@*
+320 silly resolved [ { name: 'bindings',
+320 silly resolved     description: 'Helper module for loading your native module\'s .node file',
+320 silly resolved     keywords: [ 'native', 'addon', 'bindings', 'gyp', 'waf', 'c', 'c++' ],
+320 silly resolved     version: '1.1.1',
+320 silly resolved     author:
+320 silly resolved      { name: 'Nathan Rajlich',
+320 silly resolved        email: 'nathan@tootallnate.net',
+320 silly resolved        url: 'http://tootallnate.net' },
+320 silly resolved     repository:
+320 silly resolved      { type: 'git',
+320 silly resolved        url: 'git://github.com/TooTallNate/node-bindings.git' },
+320 silly resolved     main: './bindings.js',
+320 silly resolved     readme: 'node-bindings\n=============\n### Helper module for loading your native module\'s .node file\n\nThis is a helper module for authors of Node.js native addon modules.\nIt is basically the "swiss army knife" of `require()`ing your native module\'s\n`.node` file.\n\nThroughout the course of Node\'s native addon history, addons have ended up being\ncompiled in a variety of different places, depending on which build tool and which\nversion of node was used. To make matters worse, now the _gyp_ build tool can\nproduce either a _Release_ or _Debug_ build, each being built into different\nlocations.\n\nThis module checks _all_ the possible locations that a native addon would be built\nat, and returns the first one that loads successfully.\n\n\nInstallation\n------------\n\nInstall with `npm`:\n\n``` bash\n$ npm install bindings\n```\n\nOr add it to the `"dependencies"` section of your _package.json_ file.\n\n\nExample\n-------\n\n`require()`ing the proper bindings file for the current node version, platform\nand architecture is as simple as:\n\n``` js\nvar bindings = require(\'bindings\')(\'binding.node\')\n\n// Use your bindings defined in your C files\nbindings.your_c_function()\n```\n\n\nNice Error Output\n-----------------\n\nWhen the `.node` file could not be loaded, `node-bindings` throws an Error with\na nice error message telling you exactly what was tried. You can also check the\n`err.tries` Array property.\n\n```\nError: Could not load the bindings file. Tried:\n → /Users/nrajlich/ref/build/binding.node\n → /Users/nrajlich/ref/build/Debug/binding.node\n → /Users/nrajlich/ref/build/Release/binding.node\n → /Users/nrajlich/ref/out/Debug/binding.node\n → /Users/nrajlich/ref/Debug/binding.node\n → /Users/nrajlich/ref/out/Release/binding.node\n → /Users/nrajlich/ref/Release/binding.node\n → /Users/nrajlich/ref/build/default/binding.node\n → /Users/nrajlich/ref/compiled/0.8.2/darwin/x64/binding.node\n    at bindings (/Users/nrajlich/ref/node_modules/bindings/bindings.js:84:13)\n    at Object.<anonymous> (/Users/nrajlich/ref/lib/ref.js:5:47)\n    at Module._compile (module.js:449:26)\n    at Object.Module._extensions..js (module.js:467:10)\n    at Module.load (module.js:356:32)\n    at Function.Module._load (module.js:312:12)\n    ...\n```\n\n\nLicense\n-------\n\n(The MIT License)\n\nCopyright (c) 2012 Nathan Rajlich &lt;nathan@tootallnate.net&gt;\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n\'Software\'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \'AS IS\', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n',
+320 silly resolved     readmeFilename: 'README.md',
+320 silly resolved     _id: 'bindings@1.1.1',
+320 silly resolved     _from: 'bindings@*' } ]
+321 info install bindings@1.1.1 into c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis
+322 info installOne bindings@1.1.1
+323 verbose from cache C:\Users\QIYI\AppData\Roaming\npm-cache\bindings\1.1.1\package\package.json
+324 info c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\node_modules\bindings unbuild
+325 verbose read json c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\node_modules\bindings\package.json
+326 verbose tar unpack C:\Users\QIYI\AppData\Roaming\npm-cache\bindings\1.1.1\package.tgz
+327 silly lockFile e1189d28-es-hiredis-node-modules-bindings c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\node_modules\bindings
+328 verbose lock c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\node_modules\bindings C:\Users\QIYI\AppData\Roaming\npm-cache\e1189d28-es-hiredis-node-modules-bindings.lock
+329 silly lockFile cf8c6cdf-cache-bindings-1-1-1-package-tgz C:\Users\QIYI\AppData\Roaming\npm-cache\bindings\1.1.1\package.tgz
+330 verbose lock C:\Users\QIYI\AppData\Roaming\npm-cache\bindings\1.1.1\package.tgz C:\Users\QIYI\AppData\Roaming\npm-cache\cf8c6cdf-cache-bindings-1-1-1-package-tgz.lock
+331 silly gunzTarPerm modes [ '755', '644' ]
+332 silly gunzTarPerm extractEntry package.json
+333 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+334 silly gunzTarPerm extractEntry README.md
+335 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+336 silly gunzTarPerm extractEntry bindings.js
+337 silly gunzTarPerm modified mode [ 'bindings.js', 438, 420 ]
+338 verbose read json c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\node_modules\bindings\package.json
+339 silly lockFile e1189d28-es-hiredis-node-modules-bindings c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\node_modules\bindings
+340 silly lockFile e1189d28-es-hiredis-node-modules-bindings c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\node_modules\bindings
+341 silly lockFile cf8c6cdf-cache-bindings-1-1-1-package-tgz C:\Users\QIYI\AppData\Roaming\npm-cache\bindings\1.1.1\package.tgz
+342 silly lockFile cf8c6cdf-cache-bindings-1-1-1-package-tgz C:\Users\QIYI\AppData\Roaming\npm-cache\bindings\1.1.1\package.tgz
+343 info preinstall bindings@1.1.1
+344 verbose from cache c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\node_modules\bindings\package.json
+345 verbose readDependencies using package.json deps
+346 verbose from cache c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\node_modules\bindings\package.json
+347 verbose readDependencies using package.json deps
+348 silly resolved []
+349 verbose about to build c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\node_modules\bindings
+350 info build c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\node_modules\bindings
+351 verbose from cache c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\node_modules\bindings\package.json
+352 verbose linkStuff [ false,
+352 verbose linkStuff   false,
+352 verbose linkStuff   false,
+352 verbose linkStuff   'c:\\Users\\QIYI\\Desktop\\scrapy_douban\\node_version\\node_modules\\hiredis\\node_modules' ]
+353 info linkStuff bindings@1.1.1
+354 verbose linkBins bindings@1.1.1
+355 verbose linkMans bindings@1.1.1
+356 verbose rebuildBundles bindings@1.1.1
+357 info install bindings@1.1.1
+358 info postinstall bindings@1.1.1
+359 verbose about to build c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis
+360 info build c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis
+361 verbose from cache c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\package.json
+362 verbose linkStuff [ false,
+362 verbose linkStuff   false,
+362 verbose linkStuff   false,
+362 verbose linkStuff   'c:\\Users\\QIYI\\Desktop\\scrapy_douban\\node_version\\node_modules' ]
+363 info linkStuff hiredis@0.1.15
+364 verbose linkBins hiredis@0.1.15
+365 verbose linkMans hiredis@0.1.15
+366 verbose rebuildBundles hiredis@0.1.15
+367 verbose rebuildBundles [ 'bindings' ]
+368 info install hiredis@0.1.15
+369 verbose unsafe-perm in lifecycle true
+370 silly exec cmd "/c" "node-gyp rebuild"
+371 silly cmd,/c,node-gyp rebuild,c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis spawning
+372 info hiredis@0.1.15 Failed to exec install script
+373 info c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis unbuild
+374 verbose from cache c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules\hiredis\package.json
+375 info preuninstall hiredis@0.1.15
+376 info uninstall hiredis@0.1.15
+377 verbose true,c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules,c:\Users\QIYI\Desktop\scrapy_douban\node_version\node_modules unbuild hiredis@0.1.15
+378 info postuninstall hiredis@0.1.15
+379 error hiredis@0.1.15 install: `node-gyp rebuild`
+379 error `cmd "/c" "node-gyp rebuild"` failed with 1
+380 error Failed at the hiredis@0.1.15 install script.
+380 error This is most likely a problem with the hiredis package,
+380 error not with npm itself.
+380 error Tell the author that this fails on your system:
+380 error     node-gyp rebuild
+380 error You can get their info via:
+380 error     npm owner ls hiredis
+380 error There is likely additional logging output above.
+381 error System Windows_NT 6.1.7601
+382 error command "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "hiredis" "--save"
+383 error cwd c:\Users\QIYI\Desktop\scrapy_douban\node_version
+384 error node -v v0.10.5
+385 error npm -v 1.2.18
+386 error code ELIFECYCLE
+387 verbose exit [ 1, true ]
