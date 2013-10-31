@@ -26,4 +26,9 @@ app.get('/', home.index);
 
 spider.fetch();
 
+setTimeout(function () {
+	spider.fetch();	
+}, 60 * 60 *10);
+
+
 app.listen(process.env.VCAP_APP_PORT || 8000);

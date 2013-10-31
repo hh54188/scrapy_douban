@@ -15,8 +15,8 @@ exports.connectToDB = function (callback) {
 
 var ItemSchema, ItemModel;
 
-exports.save = function (data) {
-    
+exports.batchSave = function () {
+
     var item = new ItemModel({
         url: data.href,
         title: data.title,
@@ -24,17 +24,48 @@ exports.save = function (data) {
     }).save(function (err) {
         if (err) {
             console.log("Error!", err);
+            return;
         }
 
         console.log(data.id + " saved");
-    });
+    });    
 }
+
+exports.save = function (dataArr) {
+
+    dataArr.forEach(function (data, index) {
+
+        var item = new ItemModel({
+            url: data.href,
+            title: data.title,
+            id: data.id
+        }).save(function (err) {
+            if (err) {
+                console.log("Error!", err);
+                return;
+            }
+
+            console.log(data.id + " saved");
+        });
+
+    })
+}
+
+
+exports.findAll({
+
+})
 
 exports.init = function () {
     ItemSchema = mongoose.Schema({
         url: String,
         title: String,
-        id: Number
+        id: {
+            type: [String],
+            index: {
+                unique: true
+            }
+        }
     });
 
     ItemModel = mongoose.model("MasterHouse", ItemSchema);
