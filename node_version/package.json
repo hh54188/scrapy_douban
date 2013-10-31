@@ -9,7 +9,8 @@
     "mongoose": "~3.6.20",
     "cheerio": "~0.12.3",
     "request": "~2.27.0",
-    "hiredis": "~0.1.15"
+    "hiredis": "~0.1.15",
+    "redis": "~0.9.0"
   },
   "devDependencies": {},
   "scripts": {

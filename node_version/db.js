@@ -6,7 +6,7 @@ exports.connectToDB = function (callback) {
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function () {
-        console.log('mongoDB connected!');
+        console.log('MongoDB connected!');
         if (callback) {
             callback();
         }
@@ -15,6 +15,21 @@ exports.connectToDB = function (callback) {
 
 var ItemSchema, ItemModel;
 
+exports.save = function (data) {
+    
+    var item = new ItemModel({
+        url: data.href,
+        title: data.title,
+        id: data.id
+    }).save(function (err) {
+        if (err) {
+            console.log("Error!", err);
+        }
+
+        console.log(data.id + " saved");
+    });
+}
+
 exports.init = function () {
     ItemSchema = mongoose.Schema({
         url: String,
@@ -22,21 +37,9 @@ exports.init = function () {
         id: Number
     });
 
-    ItemModel = mongoose.model("Item", ItemSchema);
+    ItemModel = mongoose.model("MasterHouse", ItemSchema);
 
-    console.log("Item init complete!");
-
-    var item = new ItemModel({
-        url: "test_url",
-        title: "test_title",
-        id: 110
-    }).save(function (err) {
-        if (err) {
-            console.log("Error!", err);
-        }
-
-        console.log("complete!");
-    });
+    console.log("Master init complete!");
 };
 
 

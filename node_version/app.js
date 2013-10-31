@@ -4,7 +4,7 @@ var express = require('express'),
 
 // Route
 var home = require("./routes/home"),
-    spider = require("./routes/spider");
+    spider = require("./spider");
 
 var app = express();
 

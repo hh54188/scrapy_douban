@@ -1,7 +1,7 @@
 var request = require("request");
 var cheerio = require("cheerio");
 var db = require("./db");
-var red = require("./redis");
+var re = require("./redis");
 
 var FETCH_URLS = [
     // "http://www.douban.com/group/beijingzufang/discussion",
@@ -39,11 +39,13 @@ var pageRequest = function (res, url) {
         var links = $("table.olt td.title a");
 
         links.map(function (i, link) {
-            var href = $(link).attr('href');
-            var title = $(link).attr('title');
-            var id = href.split('/')[5];
+            var obj = {
+                href: $(link).attr('href'),
+                title: $(link).attr('title'),
+                id: $(link).attr('href').split('/')[5]
+            }
 
-            RES[id] = href;
+            RES[obj.href.split('/')[5]] = obj;
         });
 
         COMPLETE_FLAG--;
