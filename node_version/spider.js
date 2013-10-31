@@ -1,10 +1,10 @@
 var request = require("request");
 var cheerio = require("cheerio");
 var db = require("./db");
-var red = require("./redis");
+var re = require("./redis");
 
 var FETCH_URLS = [
-    // "http://www.douban.com/group/beijingzufang/discussion",
+    "http://www.douban.com/group/beijingzufang/discussion"
     // "http://www.douban.com/group/fangzi/discussion",
     // "http://www.douban.com/group/262626/discussion",
     // "http://www.douban.com/group/276176/discussion",
@@ -13,12 +13,12 @@ var FETCH_URLS = [
     // "http://www.douban.com/group/242806/discussion",
     // "http://www.douban.com/group/257523/discussion",
     // "http://www.douban.com/group/279962/discussion",
-    "http://www.douban.com/group/334449/discussion"
+    // "http://www.douban.com/group/334449/discussion"
 ];
 
-var FETCH_PAGE_NUM = 2;
+var FETCH_PAGE_NUM = 1;
 var COMPLETE_FLAG = 0;
-var RES = {};
+var RES = [];
 
 db.connectToDB(db.init);
 
@@ -39,17 +39,19 @@ var pageRequest = function (res, url) {
         var links = $("table.olt td.title a");
 
         links.map(function (i, link) {
-            var href = $(link).attr('href');
-            var title = $(link).attr('title');
-            var id = href.split('/')[5];
+            var obj = {
+                href: $(link).attr('href'),
+                title: $(link).attr('title'),
+                id: $(link).attr('href').split('/')[5]
+            }
 
-            RES[id] = href;
+            RES.push(obj);
         });
 
         COMPLETE_FLAG--;
 
         if (!COMPLETE_FLAG) {
-            // TODO
+            db.saveAll(RES);
         }
     });
 };

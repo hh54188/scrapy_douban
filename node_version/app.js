@@ -4,7 +4,7 @@ var express = require('express'),
 
 // Route
 var home = require("./routes/home"),
-    spider = require("./routes/spider");
+    spider = require("./spider");
 
 var app = express();
 
@@ -25,5 +25,10 @@ app.use(express.static(__dirname + "/media"));
 app.get('/', home.index);
 
 spider.fetch();
+
+setTimeout(function () {
+	spider.fetch();	
+}, 60 * 60 *10);
+
 
 app.listen(process.env.VCAP_APP_PORT || 8000);
