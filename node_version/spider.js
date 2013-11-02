@@ -16,7 +16,7 @@ var FETCH_URLS = [
     "http://www.douban.com/group/334449/discussion"
 ];
 
-var FETCH_PAGE_NUM = 5;
+var FETCH_PAGE_NUM = 1;
 var COMPLETE_FLAG = 0;
 var RES = [];
 
