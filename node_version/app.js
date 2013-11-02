@@ -2,9 +2,13 @@
 var express = require('express'),
     ejs = require('ejs');
 
+// Module
+var spider = require("./spider");
+
 // Route
-var home = require("./routes/home"),
-    spider = require("./spider");
+var home = require("./routes/home");
+var ping = require("./routes/ping");
+    
 
 var app = express();
 
@@ -24,11 +28,13 @@ app.use(express.static(__dirname + "/media"));
 // Route Begin
 app.get('/', home.index);
 
-spider.fetch();
+app.get("/ping", ping.response);
+
+// spider.fetch();
 
 setTimeout(function () {
 	spider.fetch();	
-}, 60 * 60 *10);
+}, 1000 * 60 * 10);
 
 
 app.listen(process.env.VCAP_APP_PORT || 8000);

@@ -28,7 +28,7 @@ exports.saveAll = function (dataArr) {
     // });
 
     var notCompleteLen = dataArr.length;
-    var errLength = 0;
+    var errLength = 0, saveLength = 0;
     dataArr.forEach(function (data, index) {
 
         var item = new ItemModel({
@@ -37,15 +37,16 @@ exports.saveAll = function (dataArr) {
             id: data.id
         }).save(function (err) {
             if (!--notCompleteLen) {
-                console.log("Save complete!");
-                console.log("Error length", errLength);
+                console.log(errLength + " ignored!");
+                console.log(saveLength + " saved!");
             }
             
             if (err) {
-                console.log("Error!");
+                errLength++;
                 return;
             }
-            console.log(data.id + " saved");
+
+            saveLength++;
         });
 
     })
