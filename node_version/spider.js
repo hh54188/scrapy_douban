@@ -1,7 +1,7 @@
 var request = require("request");
 var cheerio = require("cheerio");
 var db = require("./db");
-var re = require("./redis");
+var re = require("./myRedis");
 
 var FETCH_URLS = [
     "http://www.douban.com/group/beijingzufang/discussion",
@@ -55,6 +55,12 @@ var pageRequest = function (res, url) {
         }
     });
 };
+
+exports.getSingle = function (id) {
+    re.getDocData(id, function (err, replay) {
+
+    });
+}
 
 exports.fetch = function (req, res) {
 

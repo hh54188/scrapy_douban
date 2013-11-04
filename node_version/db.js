@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var redis = require("redis");
 
 //connect to mongo
 exports.connectToDB = function (callback) {
@@ -52,10 +53,8 @@ exports.saveAll = function (dataArr) {
     })
 }
 
-exports.findAll = function (condition) {
-    // Blog.find({}).sort({ 
-    //             date: -1 
-    //     }).skip(SKIP_NUM * page).limit(LIMIT_NUM).exec(function (err, doc) {
+exports.getSingle = function (id) {
+
 }
 
 exports.init = function () {
