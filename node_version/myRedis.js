@@ -72,11 +72,9 @@ exports.add = function (key, sets, fn) {
 // HASH DB: 将数据存入Redis数据库中
 exports.insertData = function (docs) {
     docs.forEach(function (data) {
-        client.hset("db:" + data.id, "title", data.title, "link", data.link, function (err, replay) {
-            if (err) {
-                console.log("err------>", err);
-            }
-            console.log("Insert Data------>", replay);
+        // 批量设置 key: value
+        client.hmset("db:" + data.id, "title", data.title, "url", data.url, function (err, replay) {
+            // 获取所有Key/value 验证是否插入成功
             client.hgetall("db:" + data.id, function (err, replay) {
                 console.log("Validate Data------>", replay);
             });
