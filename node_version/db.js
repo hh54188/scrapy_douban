@@ -53,8 +53,16 @@ exports.saveAll = function (dataArr) {
     })
 }
 
-exports.getSingle = function (id) {
-
+exports.find = function (keyword, fn) {
+    ItemModel.find({
+        title: { $regex : ".*" + keyword + ".*" }
+    }, function (err, doc) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        fn(doc);
+    })
 }
 
 exports.init = function () {

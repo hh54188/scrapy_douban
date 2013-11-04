@@ -10,7 +10,8 @@
     "cheerio": "~0.12.3",
     "request": "~2.27.0",
     "hiredis": "~0.1.15",
-    "redis": "~0.9.0"
+    "redis": "~0.9.0",
+    "pinyinjs": "~2.0.3"
   },
   "devDependencies": {},
   "scripts": {

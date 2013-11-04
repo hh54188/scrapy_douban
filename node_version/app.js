@@ -7,7 +7,7 @@ var spider = require("./spider");
 
 // Route
 var home = require("./routes/home");
-var ping = require("./routes/ping");
+var query = require("./routes/query");
     
 
 var app = express();
@@ -28,7 +28,7 @@ app.use(express.static(__dirname + "/media"));
 // Route Begin
 app.get('/', home.index);
 
-app.get("/ping", ping.response);
+app.get("/query", query.response);
 
 // spider.fetch();
 

@@ -1,6 +1,23 @@
 var redis = require("redis"),
     client = redis.createClient();
 
+
+var parseInfo = function(info) {
+    var lines = info.split( "\r\n" );
+    var obj = { };
+    for ( var i = 0, l = info.length; i < l; i++ ) {
+        var line = lines[ i ];
+        if ( line && line.split ) {
+            line = line.split( ":" );
+            if ( line.length > 1 ) {
+                var key = line.shift( );
+                obj[ key ] = line.join( ":" );
+            }
+        }
+    }
+    return obj;
+}
+
 client.on("connect", function () {
     console.log("Redis connected");
     client.flushdb(function (err, replay, third) {
@@ -9,7 +26,7 @@ client.on("connect", function () {
         }
         console.log("Redis Clear");
         client.info(function (err, replay) {
-
+            var info = parseInfo(replay);
         })
     })
 })
@@ -18,15 +35,64 @@ client.on("error", function (err) {
     console.log("Error " + err);
 });    
 
-// INFO
+// LISTS: 记录命中率
 
-// HASH DB:
-exports.insertDocData = function (data) {
-    client.hset("db:" + data.id, "title", data.title, "link", data.link, redis.print);
+// ZSETS: 关键字访问次数+1
+exports.incrKeyCount = function (keyword) {
+    client.zincrby("HOTDATA", 1, keyword, function (err, replay) {
+
+        // 测试是否已经更新score:
+        // 取得所有ZSETS
+        client.zrange("HOTDATA", 0, -1, function (err, replay) {
+            console.log("Redis all ZSETS------>", replay);
+        });
+
+        // 验证指定关键字是否已经增加
+        client.zscore("HOTDATA", keyword, function (err, replay) {
+            console.log(keyword, "'s score: ", replay);            
+        });
+
+    });
 }
 
-exports.getDocData = function (id, fn) {
-    client.hgetall("db:" + id, fn);
+// SETS：某个关键字缓存的所有索引
+// 查找是否有该关键字
+exports.find = function (key, fn) {
+    client.smembers(key, function (err, replay) {
+        if (fn) fn(replay);
+    })
+}
+// 增加某个SETS
+exports.add = function (key, sets, fn) {
+    client.sadd(key, sets, function (err, replay) {
+        if (fn) fn(replay);
+    })
+}
+
+// HASH DB: 将数据存入Redis数据库中
+exports.insertData = function (docs) {
+    docs.forEach(function (data) {
+        client.hset("db:" + data.id, "title", data.title, "link", data.link, function (err, replay) {
+            if (err) {
+                console.log("err------>", err);
+            }
+            console.log("Insert Data------>", replay);
+            client.hgetall("db:" + data.id, function (err, replay) {
+                console.log("Validate Data------>", replay);
+            });
+        });
+    });
+}
+
+exports.getDocData = function (key, fn) {
+    client.smembers(key, function (err, replay) {
+        if (err) {
+            console.log("Redis------>err", err);
+            return;
+        }
+        fn(replay);
+    })
+    // client.hgetall("db:" + id, fn);
 }
 
 exports.isDocExist = function (id) {

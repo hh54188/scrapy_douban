@@ -7,9 +7,9 @@ var keywords = {
 
 request({
     "Content-type": "application/json",
-    "uri": "http://127.0.0.1:8000/ping",
+    "uri": "http://127.0.0.1:8000/query",
     "json": {
-        "hello": "world"
+        "keyword": "知春路"
     }
 }, function(error, res, body) {
     console.log(res.body);
