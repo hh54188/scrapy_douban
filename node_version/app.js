@@ -30,7 +30,7 @@ app.get('/', home.index);
 
 app.get("/ping", ping.response);
 
-// spider.fetch();
+spider.fetch();
 
 setTimeout(function () {
 	spider.fetch();	
