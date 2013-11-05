@@ -35,20 +35,36 @@ client.on("error", function (err) {
     console.log("Error " + err);
 });
 
+exports.clearRedis = function (fn) {
+    client.flushdb(function (err, replay) {
+        if (fn) fn();
+    })
+}
+
 // ZSETS: 关键字访问次数+1
-exports.incrKeyCount = function (keyword) {
+exports.incrKeyCount = function (keyword, max) {
     client.zincrby("HOTDATA", 1, keyword, function (err, replay) {
 
         // 测试是否已经更新score:
-        // 取得所有ZSETS
+        // LFU:
         client.zrange("HOTDATA", 0, -1, function (err, replay) {
-            console.log("Redis all ZSETS length------>", replay.length);
-            // 如果超过100则进行整理
-            if (replay.length > 100) {
-                // ZSETS 为升序排序，只保留最热的100个
-                // client.zrange("HOTDATA", 0, -100, function (err, replay) {
-
-                // });
+            // var max = 4000;
+            // 如果超过max则进行整理
+            if (replay.length > max) {
+                // ZSETS 为升序排序，只保留最热的max个
+                // 首先取得最多余
+                client.zrange("HOTDATA", 0, replay.length - max, function (err, replay) {
+                    replay.forEach(function (index, selindex) {
+                        removeIndex(index);
+                        // 如果是最后一个
+                        // 把多余的部分删除掉
+                        if (selindex == replay - 1) {
+                            client.zremrangebyrank("HOTDATA", 0, replay.length - max, function (err, replay) {
+                                console.log("Redis ZSETS remove------->", replay);
+                            });
+                        }
+                    })
+                });
             }
         });
 
@@ -84,7 +100,7 @@ var removeIndex = function (key) {
         replay.forEach(function (id) {
             // 删除对应HASH数据库
             client.del("db:" + id, function (err, replay) {
-                console.log("Redis del hash------>", "db:" + id);
+
                 completeFlag--;
 
                 // 如果SET中的所有数据库删除完成，则删除这个SET
@@ -120,10 +136,6 @@ exports.insertData = function (docs) {
 
 exports.getDocData = function (key, fn) {
     client.smembers(key, function (err, replay) {
-        if (err) {
-            console.log("Redis------>err", err);
-            return;
-        }
         fn(replay);
     })
     // client.hgetall("db:" + id, fn);

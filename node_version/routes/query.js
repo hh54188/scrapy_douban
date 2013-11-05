@@ -1,8 +1,19 @@
 var db = require("../db");
 var re = require("../myRedis");
 
+
+exports.clearRedis = function (req, res) {
+    re.clearRedis(function () {
+        res.send({
+            status: "clearOK"
+        })
+    })
+}
+
 exports.response = function (req, res) {
     var keyword = req.body.keyword;
+    var max = req.body,max;
+
     var key_conv = "";
     for (var i = 0; i < keyword.length; i++) {
         var cha = keyword[i];
@@ -12,16 +23,16 @@ exports.response = function (req, res) {
     // 首先去Redis中查找
     re.find(key_conv, function (replay) {
 
-        console.log("Redis find------>replay length", replay.length);
+        // console.log("Redis find------>replay length", replay.length);
 
         // 同时访问次数+1 ，更新热度
-        re.incrKeyCount(key_conv);
+        re.incrKeyCount(key_conv, max);
 
         // 如果Redis中没有缓存，从MongoDB中查找
         // 虽然返回的数组，但是实际上在Redis中为SET类型
         if (!replay.length) {
             db.find(keyword, function (docs) {
-                console.log("docs length------->", docs.length);
+                // console.log("docs length------->", docs.length);
                 var idArr = []
 
                 if (!docs.length) {
@@ -40,7 +51,7 @@ exports.response = function (req, res) {
 
                 // 增加缓存索引
                 re.add(key_conv, idArr, function (replay) {
-                    console.log("Redis save------->", replay);
+                    // console.log("Redis save------->", replay);
                 });
 
                 // 存入缓存

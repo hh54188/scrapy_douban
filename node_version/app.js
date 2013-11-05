@@ -30,6 +30,8 @@ app.get('/', home.index);
 
 app.get("/query", query.response);
 
+app.get("/clearRedis", query.clearRedis);
+
 // spider.fetch();
 
 setInterval(function () {

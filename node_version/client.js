@@ -4,41 +4,121 @@ var keywords = ["西直门","大钟寺","知春路","五道口","上地","西二
 
 // 前三成热词 后七成冷词
 var hot = keywords.slice(0, 79), cold = keywords.slice(80, 268);
+
 var queryRes = {
-    total: 0,
-    suc: 0
+    "20": {
+        total: 0,
+        suc: 0
+    },    
+    "100": {
+        total: 0,
+        suc: 0
+    },    
+    "200": {
+        total: 0,
+        suc: 0
+    },    
+    "400": {
+        total: 0,
+        suc: 0
+    },
+    "8000": {
+        total: 0,
+        suc: 0
+    }        
 };
 
-var max = completeFlag = 10000;
+var steps = [
+    {
+        max: 20,
+        round: 2000,
+        repeat: 10
+    },
+    {
+        max: 100,
+        round: 2000,
+        repeat: 10
+    },
+    {
+        max: 200,
+        round: 2000,
+        repeat: 10
+    },
+    {
+        max: 400,
+        round: 2000,
+        repeat: 10
+    },      
+    {
+        max: 8000,
+        round: 2000,
+        repeat: 10
+    }     
+]
 
-var ping = function (keyword) {
+var ping = function (keyword, max) {
     request({
         "Content-type": "application/json",
         "uri": "http://127.0.0.1:8000/query",
         "json": {
-            "keyword": keyword
+            "keyword": keyword,
+            "max": max
         }
     }, function(error, res, body) {
-        queryRes.total++;
-        console.log("queryRes.total------>", queryRes.total);
+        queryRes[max].total++;
+
         if (res.body.data === 1) {
-            queryRes.suc++;
+            queryRes[max].suc++;
         }
 
-        completeFlag--;
-        if (!completeFlag) {
-            console.log("Hit Rate------>", queryRes.suc / parseFloat(queryRes.total));
+        queryRes[max].flag--;
+        if (!queryRes[max].flag) {
+            console.log("Max: " + max + " Hit Rate------>", queryRes[max].suc / parseFloat(queryRes[max].total));
         }
     });
 }
 
-for (var i = 0; i < max; i++) {
-    var luck = parseInt(Math.random() * 10);
 
-    // 如果为热门词
-    if (luck > 3) {
-        ping(hot[parseInt(hot.length * Math.random())]);
-    } else {
-        ping(cold[parseInt(cold.length * Math.random())]);
+steps.forEach(function (step) {
+
+    // for (var j = 0; j < step.repeat; j++) {
+        request({
+            "Content-type": "application/json",
+            "uri": "http://127.0.0.1:8000/clearRedis"
+        }, function (error, res, body) {
+            execStep(step.round, step.max);
+        }); 
+    // } 
+
+});
+
+var execStep = function (round, max) {
+    queryRes[max].flag = round;
+    for (var i = 0; i < round; i++) {
+        var luck = parseInt(Math.random() * 10);
+
+        // 如果为热门词
+        if (luck > 3) {
+            ping(hot[parseInt(hot.length * Math.random())], max);
+        } else {
+            ping(cold[parseInt(cold.length * Math.random())], max);
+        }
     }
 }
+
+
+
+
+
+
+
+// for (var i = 0; i < max; i++) {
+//     var luck = parseInt(Math.random() * 10);
+
+//     // 如果为热门词
+//     if (luck > 3) {
+//         ping(hot[parseInt(hot.length * Math.random())]);
+//     } else {
+//         ping(cold[parseInt(cold.length * Math.random())]);
+//     }
+// }
