@@ -27,7 +27,13 @@ client.on("connect", function () {
         console.log("Redis Clear");
         client.info(function (err, replay) {
             var info = parseInfo(replay);
-        })
+        });
+        client.config("get", "maxmemory", function (err, replay) {
+            console.log("maxmemory------->", replay);
+        });
+        client.config("get", "maxmemory-policy", function (err, replay) {
+            console.log("memorypolicy------->", replay);
+        });        
     })
 })
 
@@ -68,6 +74,11 @@ exports.add = function (key, sets, fn) {
         if (fn) fn(replay);
     })
 }
+
+
+
+
+
 
 // HASH DB: 将数据存入Redis数据库中
 exports.insertData = function (docs) {

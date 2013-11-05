@@ -1,6 +1,5 @@
 var db = require("../db");
 var re = require("../myRedis");
-var pinyin = require("pinyinjs");
 
 exports.response = function (req, res) {
     var keyword = req.body.keyword;
