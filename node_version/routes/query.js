@@ -23,6 +23,17 @@ exports.response = function (req, res) {
             db.find(keyword, function (docs) {
                 console.log("docs length------->", docs.length);
                 var idArr = []
+
+                if (!docs.length) {
+                    // 可能没有包含该关键字的数据
+                    // 出于容错性的考虑，不能传入空数组
+                    idArr.push({
+                        id: "err",
+                        url: "url",
+                        title: "title"
+                    });
+                }
+
                 docs.forEach(function (doc) {
                     idArr.push(doc.id);
                 });

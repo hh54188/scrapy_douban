@@ -9,7 +9,7 @@ var queryRes = {
     suc: 0
 };
 
-var max = completeFlag = 100000;
+var max = completeFlag = 10000;
 
 var ping = function (keyword) {
     request({
@@ -36,7 +36,7 @@ for (var i = 0; i < max; i++) {
     var luck = parseInt(Math.random() * 10);
 
     // 如果为热门词
-    if (luck < 3) {
+    if (luck > 3) {
         ping(hot[parseInt(hot.length * Math.random())]);
     } else {
         ping(cold[parseInt(cold.length * Math.random())]);
