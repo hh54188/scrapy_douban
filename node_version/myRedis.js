@@ -28,12 +28,24 @@ client.on("connect", function () {
         client.info(function (err, replay) {
             var info = parseInfo(replay);
         });
-        client.config("get", "maxmemory", function (err, replay) {
-            console.log("maxmemory------->", replay);
+        
+        var maxMemory = 1024 * 1024 * 5;
+        client.config("set", "maxmemory", maxMemory, function (err, replay) {
+            if (replay) console.log("Reset maxmemory------->", maxMemory / (1024 * 1024) + "mb");
         });
-        client.config("get", "maxmemory-policy", function (err, replay) {
-            console.log("memorypolicy------->", replay);
+
+        var maxMemoryPolicy = "allkeys-lru";
+        client.config("set", "maxmemory-policy", maxMemoryPolicy, function (err, replay) {
+            if (replay) console.log("Reset memorypolicy------->", maxMemoryPolicy);
         });        
+
+        // volatile-lru remove a key among the ones with an expire set, trying to remove keys not recently used.
+        // volatile-ttl remove a key among the ones with an expire set, trying to remove keys with short remaining time to live.
+        // volatile-random remove a random key among the ones with an expire set.
+        // allkeys-lru like volatile-lru, but will remove every kind of key, both normal keys or keys with an expire set.
+        // allkeys-random like volatile-random, but will remove every kind of keys, both normal keys and keys with an expire set.
+
+
     })
 })
 
