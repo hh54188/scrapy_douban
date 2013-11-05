@@ -1,23 +1,6 @@
 var redis = require("redis"),
     client = redis.createClient();
 
-
-var parseInfo = function(info) {
-    var lines = info.split( "\r\n" );
-    var obj = { };
-    for ( var i = 0, l = info.length; i < l; i++ ) {
-        var line = lines[ i ];
-        if ( line && line.split ) {
-            line = line.split( ":" );
-            if ( line.length > 1 ) {
-                var key = line.shift( );
-                obj[ key ] = line.join( ":" );
-            }
-        }
-    }
-    return obj;
-}
-
 client.on("connect", function () {
     console.log("Redis connected");
     client.flushdb(function (err, replay, third) {
@@ -25,11 +8,10 @@ client.on("connect", function () {
             return;
         }
         console.log("Redis Clear");
-        client.info(function (err, replay) {
-            var info = parseInfo(replay);
-        });
+        console.log("Redis used_memory_human------>", client.server_info.used_memory_human);
+        console.log("Redis used_memory------>", client.server_info.used_memory);
         
-        var maxMemory = 1024 * 1024 * 5;
+        var maxMemory = 1024 * 1024 * 2;
         client.config("set", "maxmemory", maxMemory, function (err, replay) {
             if (replay) console.log("Reset maxmemory------->", maxMemory / (1024 * 1024) + "mb");
         });
@@ -51,9 +33,7 @@ client.on("connect", function () {
 
 client.on("error", function (err) {
     console.log("Error " + err);
-});    
-
-// LISTS: 记录命中率
+});
 
 // ZSETS: 关键字访问次数+1
 exports.incrKeyCount = function (keyword) {
@@ -61,9 +41,9 @@ exports.incrKeyCount = function (keyword) {
 
         // 测试是否已经更新score:
         // 取得所有ZSETS
-        client.zrange("HOTDATA", 0, -1, function (err, replay) {
-            console.log("Redis all ZSETS------>", replay);
-        });
+        // client.zrange("HOTDATA", 0, -1, function (err, replay) {
+        //     console.log("Redis all ZSETS------>", replay);
+        // });
 
         // 验证指定关键字是否已经增加
         client.zscore("HOTDATA", keyword, function (err, replay) {
@@ -94,13 +74,22 @@ exports.add = function (key, sets, fn) {
 
 // HASH DB: 将数据存入Redis数据库中
 exports.insertData = function (docs) {
+    var completeFlag = docs.length;
     docs.forEach(function (data) {
         // 批量设置 key: value
         client.hmset("db:" + data.id, "title", data.title, "url", data.url, function (err, replay) {
+
+            completeFlag--;
+            if (completeFlag == 0) {
+                console.log("Redis used_memory_human------>", client.server_info.used_memory_human);
+                console.log("Redis used_memory------>", client.server_info.used_memory);
+            }
+
             // 获取所有Key/value 验证是否插入成功
-            client.hgetall("db:" + data.id, function (err, replay) {
-                console.log("Validate Data------>", replay);
-            });
+            // client.hgetall("db:" + data.id, function (err, replay) {
+            //     console.log("Validate Data------>", replay);
+            // });
+
         });
     });
 }

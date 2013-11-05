@@ -12,7 +12,7 @@ exports.response = function (req, res) {
     // 首先去Redis中查找
     re.find(key_conv, function (replay) {
 
-        console.log("Redis find------>replay", replay);
+        console.log("Redis find------>replay length", replay.length);
 
         // 同时访问次数+1 ，更新热度
         re.incrKeyCount(key_conv);
@@ -38,14 +38,14 @@ exports.response = function (req, res) {
                 // 返回结果
                 res.send({
                     status: "OK",
-                    data: docs
+                    data: 0
                 });  
             })
         } else {
             // 如果缓存中有数据，从缓存中返回
             res.send({
                 status: "OK",
-                data: replay
+                data: 1
             });              
         }
     });

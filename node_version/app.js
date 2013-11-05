@@ -32,7 +32,7 @@ app.get("/query", query.response);
 
 // spider.fetch();
 
-setTimeout(function () {
+setInterval(function () {
 	spider.fetch();	
 }, 1000 * 60 * 10);
 
