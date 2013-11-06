@@ -48,31 +48,36 @@ exports.incrKeyCount = function (keyword, max) {
         // 测试是否已经更新score:
         // LFU:
         client.zrange("HOTDATA", 0, -1, function (err, replay) {
-            // var max = 4000;
+            var total = replay.length;
             // 如果超过max则进行整理
-            if (replay.length > max) {
+            console.log("total------>", total);
+            if (total > max) {
+                console.log("--------->overflow");
                 // ZSETS 为升序排序，只保留最热的max个
                 // 首先取得最多余
-                client.zrange("HOTDATA", 0, replay.length - max, function (err, replay) {
-                    replay.forEach(function (index, selindex) {
-                        removeIndex(index);
+                client.zrange("HOTDATA", 0, total - max, function (err, replay) {
+                    var completeFlag = replay.length;
+                    console.log("cut length------->", replay.length);
+                    replay.forEach(function (key, selindex) {
+                        // 把每个key对应的SET删除
+                        removeIndex(key);
                         // 如果是最后一个
                         // 把多余的部分删除掉
-                        if (selindex == replay - 1) {
-                            client.zremrangebyrank("HOTDATA", 0, replay.length - max, function (err, replay) {
-                                console.log("Redis ZSETS remove------->", replay);
+                        // 这里的replay = [key1, key2, key3....]
+                        completeFlag--;
+                        if (!completeFlag) {
+                            client.zremrangebyrank("HOTDATA", 0, total - max, function (err, replay1) {
+                                client.zrange("HOTDATA", 0, -1, function (err, replay) {
+                                    console.log("tota: ", total, " max: ", max);
+                                    console.log("Redis ZSETS remove length------->", replay1);
+                                    console.log("Still remaing length------>", replay.length);
+                                })
                             });
                         }
                     })
                 });
             }
         });
-
-        // 验证指定关键字是否已经增加
-        client.zscore("HOTDATA", keyword, function (err, replay) {
-            console.log(keyword, "'s score: ", replay);            
-        });
-
     });
 }
 
@@ -106,7 +111,7 @@ var removeIndex = function (key) {
                 // 如果SET中的所有数据库删除完成，则删除这个SET
                 if (!completeFlag) {
                     client.del(key, function (res, replay) {
-                        console.log("Redis del index sets------>", key);
+                        // console.log("Redis del index sets------>", key);
                     })
                 }
             });

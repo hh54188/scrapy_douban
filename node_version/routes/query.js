@@ -12,7 +12,7 @@ exports.clearRedis = function (req, res) {
 
 exports.response = function (req, res) {
     var keyword = req.body.keyword;
-    var max = req.body,max;
+    var max = req.body.max;
 
     var key_conv = "";
     for (var i = 0; i < keyword.length; i++) {
