@@ -6,7 +6,7 @@ from pymongo import MongoClient
 class MongoDBClas(object):
 
     MONGO_URL = os.environ.get('MONGOHQ_URL')
-    if MONGO_URL:s
+    if MONGO_URL
         print "------->Online"
         Connection = MongoClient(MONGO_URL)
         DB = Connection.app17014052
