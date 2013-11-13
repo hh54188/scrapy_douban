@@ -5,55 +5,29 @@ var keywords = ["西直门","大钟寺","知春路","五道口","上地","西二
 // 前三成热词 后七成冷词
 var hot = keywords.slice(0, 79), cold = keywords.slice(80, 268);
 
-var queryRes = {
-    "20": {
-        total: 0,
-        suc: 0
-    },    
-    "100": {
-        total: 0,
-        suc: 0
-    },    
-    "200": {
-        total: 0,
-        suc: 0
-    },    
-    "400": {
-        total: 0,
-        suc: 0
-    },
-    "8000": {
-        total: 0,
-        suc: 0
-    }        
-};
+var queryRes = {};
 
 var steps = [
     {
-        max: 20,
-        round: 2000,
-        repeat: 10
-    },
-    {
-        max: 100,
-        round: 2000,
-        repeat: 10
-    },
-    {
-        max: 200,
-        round: 2000,
-        repeat: 10
-    },
-    {
-        max: 400,
-        round: 2000,
-        repeat: 10
-    },      
-    {
-        max: 8000,
-        round: 2000,
-        repeat: 10
-    }     
+        max: 30,
+        round: 6000
+    }
+    // {
+    //     max: 100,
+    //     round: 1000
+    // },
+    // {
+    //     max: 200,
+    //     round: 1000
+    // }
+    // {
+    //     max: 400,
+    //     round: 1000
+    // },      
+    // {
+    //     max: 8000,
+    //     round: 1000
+    // }     
 ]
 
 var ping = function (keyword, max) {
@@ -80,20 +54,21 @@ var ping = function (keyword, max) {
 
 
 steps.forEach(function (step) {
-
-    // for (var j = 0; j < step.repeat; j++) {
-        request({
-            "Content-type": "application/json",
-            "uri": "http://127.0.0.1:8000/clearRedis"
-        }, function (error, res, body) {
-            execStep(step.round, step.max);
-        }); 
-    // } 
-
+    request({
+        "Content-type": "application/json",
+        "uri": "http://127.0.0.1:8000/clearRedis"
+    }, function (error, res, body) {
+        execStep(step.round, step.max);
+    });
 });
 
 var execStep = function (round, max) {
-    queryRes[max].flag = round;
+    queryRes[max] = {
+        total: 0,
+        suc: 0,
+        flag: round
+    };
+
     for (var i = 0; i < round; i++) {
         var luck = parseInt(Math.random() * 10);
 

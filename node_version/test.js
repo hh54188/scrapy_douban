@@ -1,29 +1,132 @@
-var redis = require("redis"),
-    client = redis.createClient();
 
 
-var showZSETS = function () {
-    client.zrange("test", 0, -1, function (err, replay) {
-        console.log(replay);
-    });
+
+var set = function (key, value, expire) {
+    var _cache = this.cache;
+    var _queue = this.queue;
+    var maxsize = this.maxsize;
+
+    // 如果已经存在该值，则重新赋值
+    if (_cache[key]) {
+        _cache[key] = {
+            value: value,
+            expire: expire
+        }
+
+        _queue = update(_queue, key);
+
+    // 如果为新插入
+    } else {
+        _cache[key] = {
+            value: value,
+            expire: expire,
+            insertTime: +new Date()
+        }
+
+        // 更新索引
+        _queue.unshift(key);
+
+        // 如果超出最大值，截断
+        if (_queue.length > maxsize) {
+            // 删除多余数据
+            for (var i = maxsize, len = _queue.length; i < len; i++) {
+                delete _cache[_queue[i]];
+            }
+            // 截断索引
+            _queue = _queue.slice(0, maxsize);
+        }
+    }
 }
 
-client.on("connect", function () {
-    client.flushdb(function (err, replay) {
-        var completeFlag = 100;
-        for (var i = 0; i < 100; i++) {
-            client.zadd("test", i, "key_" + i, function (err, replay) {
-                completeFlag--;
-                if (!completeFlag) {
-                    // client.zrange("test", 0, 20, function (err, replay) {
-                    //     console.log(replay);
-                    // });                    
-                    client.zremrangebyrank("test", 0, 20, function (err, replay) {
-                        console.log("What's removed------>", replay);
-                        showZSETS();
-                    })
-                }
-            })
+var update = function (queue, key) {
+    for (var i = 0; i < queue.length; i++) {
+        if (queue[i] == key) {
+            queue.splice(i, 1);
+            break;
         }
-    })
-})
+    }
+
+    queue.unshift(key);
+    return queue;
+}
+
+var get = function (key) {
+    var _cache = this.cache;
+    var _queue = this.queue;
+    var maxsize = this.maxsize;
+
+    // 如果存在该值
+    if (_cache[key]) {
+        var insertTime = _cache[key].insertTime;
+        var expire = _cache[key].expire;
+        var curTime = +new Date();
+
+        // 如果不存在过期时间 或者 存在过期时间但尚未过期
+        if (!expire || (expire && curTime - insertTime < expire)) {
+            // 已经使用过，更新队列
+            _queue = update(_queue, key);
+
+            return _cache[key].value
+
+        // 如果已经过期
+        } else if (expire && curTime - insertTime > expire) {
+            // 从队列中删除
+            for (var i = 0; i < _queue.length; i++) {
+                if (_queue[i] == key) {
+                    _queue.slice(i, 1);
+                    delete _cache[key];
+                    break;
+                }
+            }
+
+            return null
+        }
+
+    } else {
+        return null;
+    }
+
+}
+
+var clear = function () {
+    this.cache = {};
+    this.queue = [];
+}
+
+
+var createCache = function (maxsize) {
+    var obj =  {
+        cache: {},
+        queue: [],
+        maxsize: maxsize,
+
+        set: set,
+        get: get,
+        clear: clear
+    }
+
+    setInterval(function () {
+
+        for (var i = 0; i < obj.queue.length; i++) {
+            var key = obj.queue[i];
+
+            var insertTime = obj.cache[key].insertTime;
+            var expire = obj.cache[key].expire;
+            var curTime = +new Date();
+
+            // 如果过期时间存在并且已经过期
+            if (expire && curTime - insertTime > expire) {
+                obj.queue.splice(i--, 1);
+                delete obj.cache[key];
+            }
+        }
+    }, 1000);
+
+    return obj;
+}
+
+var cache = createCache(1000);
+
+setInterval(function () {
+    console.log(cache.cache);
+}, 1000);

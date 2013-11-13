@@ -45,39 +45,6 @@ exports.clearRedis = function (fn) {
 exports.incrKeyCount = function (keyword, max) {
     client.zincrby("HOTDATA", 1, keyword, function (err, replay) {
 
-        // 测试是否已经更新score:
-        // LFU:
-        client.zrange("HOTDATA", 0, -1, function (err, replay) {
-            var total = replay.length;
-            // 如果超过max则进行整理
-            console.log("total------>", total);
-            if (total > max) {
-                console.log("--------->overflow");
-                // ZSETS 为升序排序，只保留最热的max个
-                // 首先取得最多余
-                client.zrange("HOTDATA", 0, total - max, function (err, replay) {
-                    var completeFlag = replay.length;
-                    console.log("cut length------->", replay.length);
-                    replay.forEach(function (key, selindex) {
-                        // 把每个key对应的SET删除
-                        removeIndex(key);
-                        // 如果是最后一个
-                        // 把多余的部分删除掉
-                        // 这里的replay = [key1, key2, key3....]
-                        completeFlag--;
-                        if (!completeFlag) {
-                            client.zremrangebyrank("HOTDATA", 0, total - max, function (err, replay1) {
-                                client.zrange("HOTDATA", 0, -1, function (err, replay) {
-                                    console.log("tota: ", total, " max: ", max);
-                                    console.log("Redis ZSETS remove length------->", replay1);
-                                    console.log("Still remaing length------>", replay.length);
-                                })
-                            });
-                        }
-                    })
-                });
-            }
-        });
     });
 }
 
