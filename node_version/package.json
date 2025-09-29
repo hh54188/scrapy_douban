@@ -4,11 +4,11 @@
   "description": "ERROR: No README.md file found!",
   "main": "app.js",
   "dependencies": {
-    "ejs": "~0.8.4",
-    "express": "~3.4.0",
-    "mongoose": "~3.6.20",
+    "ejs": "~3.1.10",
+    "express": "~5.1.0",
+    "mongoose": "~8.18.3",
     "cheerio": "~0.12.3",
-    "request": "~2.27.0",
+    "request": "~2.88.2",
     "hiredis": "~0.1.15",
     "redis": "~0.9.0",
     "pinyinjs": "~2.0.3"
