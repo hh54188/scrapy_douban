@@ -1,10 +1,10 @@
 BeautifulSoup==3.2.1
-Flask==0.10.1
-Jinja2==2.7
+Flask==2.2.5
+Jinja2==3.1.6
 MarkupSafe==0.18
-Werkzeug==0.9.1
+Werkzeug==3.1.4
 beautifulsoup4==4.2.1
 distribute==0.6.34
-gunicorn==17.5
+gunicorn==22.0.0
 itsdangerous==0.22
-pymongo==2.5.2
+pymongo==4.6.3
